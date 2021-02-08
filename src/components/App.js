@@ -1,12 +1,17 @@
 import React from 'react';
-import Img from '../images/notfound.png';
-import '../styles/style.css';
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Switch,  Route } from "react-router-dom";
 import store from '../redux/store';
-import Counter from './Counter';
+import Menu from './Menu';
+import Pages from './Pages';
+import '../styles/style.css';
+
 const App = () => (
   <Provider store={store}>
-    <Counter />
+    <Router>
+      <Menu />
+      <Pages />
+    </Router>
   </Provider>
 );
 

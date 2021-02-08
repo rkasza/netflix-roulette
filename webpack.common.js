@@ -3,8 +3,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js'
   },
@@ -27,7 +25,10 @@ module.exports = {
         test :/\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader'
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
           }
         ]
       },
@@ -44,9 +45,5 @@ module.exports = {
       title: 'Development'
     }),
     new MiniCssExtractPlugin()
-  ],
-  devServer: {
-    historyApiFallback: true,
-    port: 5000,
-  }
+  ]
 }

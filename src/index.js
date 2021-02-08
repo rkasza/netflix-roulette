@@ -5,7 +5,7 @@ import './style.css';
 
 const App = () => (
   <div>
-    <h1 className="red">Hello Worl222dsdasdasdas</h1>
+    <h1 className="red">Hello World</h1>
     <img src={Img} />
   </div>
 );

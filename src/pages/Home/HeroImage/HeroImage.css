@@ -1,0 +1,11 @@
+.HeroImage {
+  height: 240px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.HeroContent{
+  width: 100%;
+}

@@ -1,7 +1,12 @@
-import './assets/css/index.css';
+import ErrorBoundary from './components/ErrorBoundary';
+import Home from './pages/Home/Home';
 
 function App() {
-  return <div><span>netflixroulette</span></div>;
+  return (
+    <ErrorBoundary>
+      <Home />
+    </ErrorBoundary>
+  );
 }
 
 export default App;

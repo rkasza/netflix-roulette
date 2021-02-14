@@ -1,3 +1,7 @@
+body {
+  background-color: #555555;
+  color: #fff;
+}
 .button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
   background-color: #f65261;
   border-color: #f65261;

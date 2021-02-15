@@ -12,3 +12,31 @@
 .NoMovieFound h2 {
   text-align: center;
 }
+.MovieList {
+  display: flex;
+  flex-wrap: wrap;
+  _justify-content: space-evenly;
+}
+.Movie {
+  display: flex;
+  width: 33.3%;
+  flex-direction: column;
+  margin-bottom: 1em;
+  padding: 1em;
+  box-sizing: border-box;
+}
+.Movie .Poster img {
+  max-width: 100%;
+  width: 100%;
+}
+.Movie .Info {
+
+}
+
+.Movie .Info h5 {
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+.Movie .Info h5 span {
+  float: right;
+}

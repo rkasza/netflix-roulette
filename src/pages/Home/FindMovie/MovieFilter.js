@@ -3,7 +3,7 @@ import Col from '../../../components/Skeleton/Col';
 import Row from '../../../components/Skeleton/Row';
 import './FindMovie.css';
 
-const FindMovie = props => {
+const MovieFilter = props => {
   return (
     <form className="FindMovieForm">
       <Row>
@@ -17,11 +17,11 @@ const FindMovie = props => {
           <input className="u-full-width searchfield" type="text" placeholder="What do you want to watch?" id="movieQuery" />
         </Col>
         <Col size={3}>
-          <input class="button-primary u-full-width search" type="submit" value="Search" />
+          <input className="button-primary u-full-width search" type="submit" value="Search" />
         </Col>
       </Row>
     </form>
   )
 };
 
-export default FindMovie;
+export default MovieFilter;

@@ -1,0 +1,14 @@
+.MovieListWrapper {
+  background-color: #232323;
+  margin-top: 0.8em;
+  padding: 0.7em 2em;
+}
+.active {
+  color: #f56261
+}
+.ResultController {
+  margin-bottom: 1em;
+}
+.NoMovieFound h2 {
+  text-align: center;
+}

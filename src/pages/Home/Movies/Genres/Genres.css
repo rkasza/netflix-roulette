@@ -1,0 +1,20 @@
+.GenreWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Genre {
+  text-transform: uppercase;
+  padding: initial ;
+  border: none;
+  color: #fff;
+  margin: 0;
+  height: initial;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: initial;
+}
+
+.Genre:hover, .Genre.active {
+  color:#f65261;
+}

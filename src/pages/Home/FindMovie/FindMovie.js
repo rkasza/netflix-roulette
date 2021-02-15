@@ -3,7 +3,7 @@ import Row from '../../../components/Skeleton/Row';
 import Col from '../../../components/Skeleton/Col';
 import HeroImage from '../HeroImage/HeroImage';
 import Logo from '../../../components/Logo/Logo';
-import Form from './Form';
+import MovieFilter from './MovieFilter';
 
 const FindMovie = () => {
   return (
@@ -16,13 +16,13 @@ const FindMovie = () => {
                 <Logo />
                 <button className="button AddMovie" type="button">+ ADD MOVIE</button>
               </div>
-              <Form />
+              <MovieFilter />
             </div>
           </HeroImage>
         </Col>
       </Row>
     </div>
   )
-}
+};
 
-export default FindMovie
+export default FindMovie;

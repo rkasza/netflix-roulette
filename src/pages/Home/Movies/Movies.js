@@ -14,23 +14,37 @@ class Movies extends React.Component {
     this.state = {
       selectedGenre: 'All',
       sortBy: 1,
-      movies
+      movies,
+      filteredMovies: this.sortMoviesByDate(movies)
     };
   }
+
   hendleGenreChange (selectedGenre) {
-    console.log(selectedGenre)
     this.setState({ selectedGenre });
   }
+
   handleSortByChange (sortBy) {
-    this.setState({ sortBy });
+    const filterFunction = sortBy === 1 ? this.sortMoviesByDate.bind(this) : this.sortMoviesByRating.bind(this);
+    const filteredMovies = filterFunction(this.state.movies);
+    this.setState({ sortBy, filteredMovies });
+  }
+  filterMovies () {
+
+  }
+  sortMoviesByDate (movies) {
+    return movies.sort(({ release_date: a }, { release_date: b }) => b.localeCompare(a));
+  }
+  
+  sortMoviesByRating (movies) {
+    return movies.sort(({ vote_average: a }, { vote_average: b }) => b > a);
   }
   render () {
-    const { selectedGenre, sortBy } = this.state;
+    const { selectedGenre, sortBy, filteredMovies } = this.state;
     return (
       <div className="MovieListWrapper">
         <MovieListController selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={this.hendleGenreChange.bind(this)} onSortByChange={this.handleSortByChange.bind(this)}/>
         <Row className="MovieList">
-          {this.state.movies.map(movie => <Movie key={movie.id} {...movie} />)}
+          {filteredMovies.map(movie => <Movie key={movie.id} {...movie} />)}
         </Row>
       </div>
     );

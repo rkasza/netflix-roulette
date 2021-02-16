@@ -1,5 +1,5 @@
 import React from 'react';
-import Col from '../../../../components/Skeleton/Col';
+import Col from '../../../../../components/Skeleton/Col';
 import './SortBy.css';
 const SortBy = ({ onChange, value = 1 }) => {
   return (

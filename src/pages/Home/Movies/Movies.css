@@ -21,7 +21,7 @@
   display: flex;
   width: 33.3%;
   flex-direction: column;
-  margin-bottom: 1em;
+  _margin-bottom: 1em;
   padding: 1em;
   box-sizing: border-box;
 }
@@ -29,13 +29,14 @@
   max-width: 100%;
   width: 100%;
 }
-.Movie .Info {
-
-}
 
 .Movie .Info h5 {
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 1rem;
+}
+.Movie .Info .MovieGenres {
+  font-size: 12px;
+  color: #909090;
 }
 .Movie .Info h5 span {
   float: right;

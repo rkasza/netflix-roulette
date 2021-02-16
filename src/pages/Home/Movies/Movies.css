@@ -1,7 +1,7 @@
 .MovieListWrapper {
   background-color: #232323;
   margin-top: 0.8em;
-  padding: 0.7em 2em;
+  padding: 1em;
 }
 .active {
   color: #f56261
@@ -9,9 +9,11 @@
 .ResultController {
   margin-bottom: 1em;
 }
-.NoMovieFound h2 {
+.NoMovieFound {
   text-align: center;
+  width: 100%;
 }
+
 .MovieList {
   display: flex;
   flex-wrap: wrap;

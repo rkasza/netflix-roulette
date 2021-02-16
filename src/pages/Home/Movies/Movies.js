@@ -15,22 +15,30 @@ class Movies extends React.Component {
       selectedGenre: 'All',
       sortBy: 1,
       movies,
-      filteredMovies: this.sortMoviesByDate(movies)
+      _movies: this.sortMoviesByDate(movies)
     };
   }
 
   hendleGenreChange (selectedGenre) {
-    this.setState({ selectedGenre });
+    this.setState({ selectedGenre, movies: this.filterMovies(selectedGenre) });
   }
 
   handleSortByChange (sortBy) {
-    const filterFunction = sortBy === 1 ? this.sortMoviesByDate.bind(this) : this.sortMoviesByRating.bind(this);
-    const filteredMovies = filterFunction(this.state.movies);
-    this.setState({ sortBy, filteredMovies });
+    const sortFunction = sortBy === 1 ? this.sortMoviesByDate.bind(this) : this.sortMoviesByRating.bind(this);
+    const movies = sortFunction(this.state.movies);
+    this.setState({ sortBy, movies });
   }
-  filterMovies () {
 
+  sortMovies (movies) {
+    const sortFunction = this.state.sortBy === 1 ? this.sortMoviesByDate.bind(this) : this.sortMoviesByRating.bind(this);
+    return sortFunction(movies);
   }
+  
+  filterMovies (selectedGenre) {
+    const t = this.sortMovies(this.state._movies.filter(({ genres }) => selectedGenre === 'All' || genres.includes(selectedGenre)))
+    return t;
+  }
+
   sortMoviesByDate (movies) {
     return movies.sort(({ release_date: a }, { release_date: b }) => b.localeCompare(a));
   }
@@ -39,12 +47,12 @@ class Movies extends React.Component {
     return movies.sort(({ vote_average: a }, { vote_average: b }) => b > a);
   }
   render () {
-    const { selectedGenre, sortBy, filteredMovies } = this.state;
+    const { selectedGenre, sortBy, movies } = this.state;
     return (
       <div className="MovieListWrapper">
         <MovieListController selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={this.hendleGenreChange.bind(this)} onSortByChange={this.handleSortByChange.bind(this)}/>
         <Row className="MovieList">
-          {filteredMovies.map(movie => <Movie key={movie.id} {...movie} />)}
+          {movies.length !== 0 ? movies.map(movie => <Movie key={movie.id} {...movie} />) : <NoMovieFound />}
         </Row>
       </div>
     );

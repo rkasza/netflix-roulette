@@ -10,13 +10,11 @@ const FindMovie = () => {
     <Row className="FindMovieWrapper">
       <Col size={12}>
         <HeroImage image="/images/movie-montage.jpg">
-          <div style={{ padding: '0.2em 1em' }}>
             <div className="header">
               <Logo />
               <button className="button AddMovie" type="button">+ ADD MOVIE</button>
             </div>
             <MovieFilter />
-          </div>
         </HeroImage>
       </Col>
     </Row>

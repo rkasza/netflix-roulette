@@ -1,7 +1,7 @@
 .MovieListWrapper {
   background-color: #232323;
   margin-top: 0.8em;
-  padding: 1em;
+  padding: 1em 2.5em;
 }
 .active {
   color: #f56261
@@ -21,11 +21,17 @@
 }
 .Movie {
   display: flex;
-  width: 33.3%;
+  width: 32.3%;
   flex-direction: column;
   _margin-bottom: 1em;
-  padding: 1em;
+  margin: 1em 0;
   box-sizing: border-box;
+  flex: 0 0 32%;
+}
+
+.Movie:nth-child(3n - 1) {
+  margin-left: 1.3em;
+  margin-right: 1.3em;
 }
 .Movie .Poster img {
   max-width: 100%;

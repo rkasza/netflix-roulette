@@ -1,10 +1,17 @@
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home/Home';
+import Logo from './components/Logo/Logo';
+import Container from  './components/Skeleton/Container';
+import './assets/css/App.css';
+
 
 function App() {
   return (
     <ErrorBoundary>
-      <Home />
+      <Container>
+        <Home />
+        <footer><Logo fontSize={18}/></footer>
+      </Container>
     </ErrorBoundary>
   );
 }

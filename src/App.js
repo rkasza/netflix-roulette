@@ -10,7 +10,7 @@ function App() {
     <ErrorBoundary>
       <Container>
         <Home />
-        <footer><Logo fontSize={18}/></footer>
+        <footer><Logo fontSize='18px' /></footer>
       </Container>
     </ErrorBoundary>
   );

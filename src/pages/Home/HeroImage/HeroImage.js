@@ -1,5 +1,6 @@
 import React from 'react';
-import './HeroImage.css'
+import './HeroImage.css';
+import PropTypes from 'prop-types'
 
 const HeroImage = ({ children, image = '' }) => {
   const backgraundImage = `url("${image}")`;
@@ -11,6 +12,10 @@ const HeroImage = ({ children, image = '' }) => {
       </div>
     </div>
   );
+};
+
+HeroImage.propTypes = {
+  image: PropTypes.string
 };
 
 export default HeroImage;

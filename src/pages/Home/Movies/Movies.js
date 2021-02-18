@@ -5,6 +5,7 @@ import './Movies.css';
 import moviesJSON from '../../../__mocks__/movies.json'
 import Movie from './Movie/Movie';
 import Row from '../../../components/Skeleton/Row';
+import Col from '../../../components/Skeleton/Col';
 
 const { data: movies } = moviesJSON;
 
@@ -51,6 +52,11 @@ class Movies extends React.Component {
     return (
       <div className="MovieListWrapper">
         <MovieListController selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={this.hendleGenreChange.bind(this)} onSortByChange={this.handleSortByChange.bind(this)}/>
+        <Row>
+          <Col size={12}>
+            <span style={{ fontSize: '20px' }}>{`${movies.length} movies found`}</span>
+          </Col>
+        </Row>
         <Row className="MovieList">
           {movies.length !== 0 ? movies.map(movie => <Movie key={movie.id} {...movie} />) : <NoMovieFound />}
         </Row>

@@ -27,6 +27,7 @@
   margin-bottom: 2em;
   box-sizing: border-box;
   flex: 0 0 32%;
+  position: relative;
 }
 
 .Movie:nth-child(3n - 1) {
@@ -35,6 +36,14 @@
 }
 .Movie .Poster {
   margin-bottom: 1em;
+}
+.Movie .MovieMenuButton {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background-color: rgba(0,0,0, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
 }
 .Movie .Poster img {
   max-width: 100%;

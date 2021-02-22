@@ -16,6 +16,13 @@ class Home extends React.Component {
       _movies: movies,
       query: ''
     };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSearch = this.handleOnSearch.bind(this);
+    this.sortMoviesByDate = this.sortMoviesByDate.bind(this);
+    this.sortMoviesByRating = this.sortMoviesByRating.bind(this);
+    this.handleGenreChange = this.handleGenreChange.bind(this);
+    this.handleSortByChange = this.handleSortByChange.bind(this);
   }
 
   handleGenreChange (selectedGenre) {
@@ -41,7 +48,7 @@ class Home extends React.Component {
   }
 
   handleSortByChange (sortBy) {
-    const sortFunction = sortBy === 1 ? this.sortMoviesByDate.bind(this) : this.sortMoviesByRating.bind(this);
+    const sortFunction = sortBy === 1 ? this.sortMoviesByDate : this.sortMoviesByRating;
     const movies = sortFunction(this.state.movies);
     this.setState({ sortBy, movies });
   }
@@ -49,12 +56,12 @@ class Home extends React.Component {
   handleEnter (event) {
     if (event.charCode === 13) {
       event.preventDefault();
-      this.handleOnSearch(this.handleOnSearch);
+      this.handleOnSearch();
     }
   }
 
   sortMovies (movies) {
-    const sortFunction = this.state.sortBy === 1 ? this.sortMoviesByDate.bind(this) : this.sortMoviesByRating.bind(this);
+    const sortFunction = this.state.sortBy === 1 ? this.sortMoviesByDate : this.sortMoviesByRating;
     return sortFunction(movies);
   }
   
@@ -76,19 +83,18 @@ class Home extends React.Component {
 
   render() {
     const { selectedGenre, sortBy, movies, query } = this.state;
-    console.log('render');
     return ( 
       <>
         <FindMovie
           query={query}
-          onEnter={this.handleEnter.bind(this)}
-          onSearch={this.handleOnSearch.bind(this)}
-          onChange={this.handleOnChange.bind(this)} />
+          onEnter={this.handleEnter}
+          onSearch={this.handleOnSearch}
+          onChange={this.handleOnChange} />
         <Movies
           selectedGenre={selectedGenre}
           sortBy={sortBy} movies={movies}
-          onGenreChange={this.handleGenreChange.bind(this)}
-          onSortByChange={this.handleSortByChange.bind(this)}/>
+          onGenreChange={this.handleGenreChange}
+          onSortByChange={this.handleSortByChange}/>
       </>
     );
   }

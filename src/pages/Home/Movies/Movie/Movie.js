@@ -10,6 +10,8 @@ class Movie extends React.Component {
     this.state = {
       showMenuButton: false
     }
+    this.handleOnMouseEnter = this.handleOnMouseEnter.bind(this);
+    this.handleOnMouseLeave = this.handleOnMouseLeave.bind(this)
   }
 
   handleOnMouseEnter () {
@@ -23,17 +25,17 @@ class Movie extends React.Component {
     const { title, poster_path, release_date, genres } = this.props;
     const { showMenuButton } = this.state;
     return (
-      <div className="Movie" onMouseEnter={this.handleOnMouseEnter.bind(this)} onMouseLeave={this.handleOnMouseLeave.bind(this)} >
+      <div className="Movie" onMouseEnter={this.handleOnMouseEnter} onMouseLeave={this.handleOnMouseLeave} >
         {showMenuButton && <DotsVerticalIcon  className="MovieMenuButton" size={40}/>}
         <div className="Poster">
           <Image src={poster_path}  alt={title} />
         </div>
         <div className="Info">
-            <h5>
-              {title}
-              <ReleaseYear>{release_date.slice(0, 4)}</ReleaseYear>
-            </h5>
-            <GenreList genres={genres} />
+          <h5>
+            {title}
+            <ReleaseYear>{release_date}</ReleaseYear>
+          </h5>
+          <GenreList genres={genres} />
         </div>
       </div>
     )

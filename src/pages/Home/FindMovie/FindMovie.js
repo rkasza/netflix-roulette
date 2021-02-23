@@ -6,7 +6,7 @@ import HeroImage from '../HeroImage/HeroImage';
 import Logo from '../../../components/Logo/Logo';
 import MovieFilter from './MovieFilter';
 
-const FindMovie = ({ onSearch, query, onChange, onEnter }) => {
+const FindMovie = ({ onSubmit, query, onChange }) => {
   return (
     <Row className="FindMovieWrapper">
       <Col size={12}>
@@ -15,7 +15,7 @@ const FindMovie = ({ onSearch, query, onChange, onEnter }) => {
               <Logo />
               <button className="button AddMovie" type="button">+ ADD MOVIE</button>
             </div>
-            <MovieFilter onChange={onChange} onSearch={onSearch} query={query} onEnter={onEnter} />
+            <MovieFilter onChange={onChange} onSubmit={onSubmit} query={query} />
         </HeroImage>
       </Col>
     </Row>
@@ -23,7 +23,7 @@ const FindMovie = ({ onSearch, query, onChange, onEnter }) => {
 };
 
 FindMovie.propTypes = {
-  onSearch: PropTypes.func,
+  onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   onEnter: PropTypes.func,
   query: PropTypes.string,

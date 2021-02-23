@@ -14,11 +14,11 @@ class Home extends React.Component {
       sortBy: 1,
       movies:this.sortMoviesByDate(movies),
       _movies: movies,
-      query: ''
+      query: '',
+      lastQuery: ''
     };
-    this.handleEnter = this.handleEnter.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleOnSearch = this.handleOnSearch.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.sortMoviesByDate = this.sortMoviesByDate.bind(this);
     this.sortMoviesByRating = this.sortMoviesByRating.bind(this);
     this.handleGenreChange = this.handleGenreChange.bind(this);
@@ -33,31 +33,22 @@ class Home extends React.Component {
     this.setState({ query: value });
   }
 
-  handleOnSearch() {
-    const { selectedGenre } = this.state;
-    let movies = this.filterMovies(selectedGenre);
-    if (this.state.query !== '') {
-      movies = movies.filter(movie => filterByQuery(movie, this.state.query));
-    } 
-    this.setState({ movies });
-  }
-  shouldComponentUpdate(nextProps, nextState) {
-    const nextStateSTR = JSON.stringify(nextState);
-    const currentState = JSON.stringify(this.state);
-    return nextStateSTR !== currentState;
+  handleOnSubmit(event) {
+    event.preventDefault();
+    const { selectedGenre, query, lastQuery } = this.state;
+    if (query !== lastQuery) {
+      let movies = this.filterMovies(selectedGenre);
+      if (query !== '') {
+        movies = movies.filter(movie => filterByQuery(movie, this.state.query));
+      } 
+      this.setState({ movies, lastQuery: this.state.query });
+    }
   }
 
   handleSortByChange (sortBy) {
     const sortFunction = sortBy === 1 ? this.sortMoviesByDate : this.sortMoviesByRating;
     const movies = sortFunction(this.state.movies);
     this.setState({ sortBy, movies });
-  }
-
-  handleEnter (event) {
-    if (event.charCode === 13) {
-      event.preventDefault();
-      this.handleOnSearch();
-    }
   }
 
   sortMovies (movies) {
@@ -87,8 +78,7 @@ class Home extends React.Component {
       <>
         <FindMovie
           query={query}
-          onEnter={this.handleEnter}
-          onSearch={this.handleOnSearch}
+          onSubmit={this.handleOnSubmit}
           onChange={this.handleOnChange} />
         <Movies
           selectedGenre={selectedGenre}

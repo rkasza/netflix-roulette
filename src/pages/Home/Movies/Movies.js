@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MovieListController from './Controls/MovieListController';
+import MoviesToolbar from './Controls/MoviesToolbar';
 import NoMovieFound from './NoMovieFound';
 import './Movies.css';
 import Movie from './Movie/Movie';
@@ -9,7 +9,7 @@ import Col from '../../../components/Skeleton/Col';
 
 const Movies = ({ selectedGenre, sortBy, movies, onGenreChange, onSortByChange }) => (
   <div className="MovieListWrapper">
-    <MovieListController selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={onGenreChange} onSortByChange={onSortByChange}/>
+    <MoviesToolbar selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={onGenreChange} onSortByChange={onSortByChange}/>
     <Row>
       <Col size={12}>
         <span style={{ fontSize: '20px' }}>{`${movies.length} movies found`}</span>

@@ -1,16 +1,19 @@
-import HelloWorldWithCreateElement from './components/HelloWorldWithCreateElement';
-import HelloWorldWithClass from './components/HelloWorldWithClass';
-import HelloWorldWithPureComponent from './components/HelloWorldWithPureComponent';
-import HelloWorld from './components/HelloWorld';
+import ErrorBoundary from './components/ErrorBoundary';
+import Home from './pages/Home/Home';
+import Logo from './components/Logo/Logo';
+import Container from  './components/Skeleton/Container';
+import './assets/css/App.css';
 
 
 function App() {
-  return <>
-    <HelloWorldWithCreateElement el='h2'>Hello World</HelloWorldWithCreateElement>
-    <HelloWorldWithClass style={{ textAlign: 'center' }}>Hello World2</HelloWorldWithClass>
-    <HelloWorldWithPureComponent style={{ textAlign: 'right' }}>Hello World3</HelloWorldWithPureComponent>
-    <HelloWorld style={{ textAlign: 'left', color: 'red' }}>Hello World4</HelloWorld>
-  </>;
+  return (
+    <ErrorBoundary>
+      <Container>
+        <Home />
+        <footer><Logo fontSize='18px' /></footer>
+      </Container>
+    </ErrorBoundary>
+  );
 }
 
 export default App;

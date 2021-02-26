@@ -1,0 +1,16 @@
+body {
+  background-color: #555555;
+  color: #fff;
+}
+.container {
+  max-width: 1100px;
+}
+.button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
+  background-color: #f65261;
+  border-color: #f65261;
+}
+.button.button-primary:hover, button.button-primary:hover, input[type="submit"].button-primary:hover, input[type="reset"].button-primary:hover, input[type="button"].button-primary:hover, .button.button-primary:focus, button.button-primary:focus, input[type="submit"].button-primary:focus, input[type="reset"].button-primary:focus, input[type="button"].button-primary:focus {
+  background-color: #fff;
+  color: #f65261;
+  border-color: #f65261;
+}

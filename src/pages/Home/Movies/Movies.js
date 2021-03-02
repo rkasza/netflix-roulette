@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MoviesToolbar from './Controls/MoviesToolbar';
+import MoviesToolbar from './MoviesToolbar/MoviesToolbar';
 import NoMovieFound from './NoMovieFound';
 import './Movies.css';
 import Movie from './Movie/Movie';

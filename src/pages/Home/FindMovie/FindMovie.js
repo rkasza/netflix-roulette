@@ -6,14 +6,14 @@ import HeroImage from '../HeroImage/HeroImage';
 import Logo from '../../../components/Logo/Logo';
 import MovieFilter from './MovieFilter';
 
-const FindMovie = ({ onSubmit, query, onChange }) => {
+const FindMovie = ({ onSubmit, query, onChange, onAddMovie }) => {
   return (
     <Row className="FindMovieWrapper">
       <Col size={12}>
         <HeroImage image="/images/movie-montage.jpg">
             <div className="header">
               <Logo />
-              <button className="button AddMovie" type="button">+ ADD MOVIE</button>
+              <button className="button AddMovie" type="button" onClick={onAddMovie}>+ ADD MOVIE</button>
             </div>
             <MovieFilter onChange={onChange} onSubmit={onSubmit} query={query} />
         </HeroImage>

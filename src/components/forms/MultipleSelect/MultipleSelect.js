@@ -19,8 +19,7 @@ class MultipleSelect extends React.Component {
   }
   
   handleOutsideClick(event) {
-    console.log('Hello There');
-    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) { 
+    if (this.wrapperRef.current && !this.wrapperRef.current.contains(event.target) && this.state.showOptions) {
       this.setState({ showOptions: false });
     } 
   }

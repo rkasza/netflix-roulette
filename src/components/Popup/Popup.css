@@ -1,0 +1,17 @@
+.PopupWrapper {
+  position: relative;
+}
+.PopupWrapper .PopupContent {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #232323;
+  border-radius: 6px;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.4);
+}
+.PopupWrapper .PopupContent .PopupCloseIcon {
+  position: relative;
+  left: 85%;
+  top: 2px;
+  cursor: pointer;
+}

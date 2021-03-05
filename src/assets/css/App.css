@@ -4,3 +4,18 @@ footer {
   margin-bottom: 2em;
   padding: 0.5em;
 }
+.Confirm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.Confirm button {
+  align-self: flex-end;
+}
+.Modal.ConfirmModal .ModalContent {
+  height: 30vh;
+  padding: 4em;
+}
+.Modal.MovieForm {
+  min-height: 75vh;
+}

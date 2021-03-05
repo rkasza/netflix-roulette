@@ -10,43 +10,24 @@ import './MovieForm.css';
 class MovieForm extends Component {
   constructor(props) {
     super(props);
-    this.defaultFormState = {
-      formData: {
-        id: null,
-        title: '',
-        release_date: new Date().toISOString().split('T')[0], // date,
-        poster_path: '',
-        genres: [],  // multiple options
-        overview: '',
-        runtime: '' // in minutes 
-      },
-      errors: {
-        id: null,
-        title: '',
-        release_date: new Date().toISOString().split('T')[0], // date,
-        poster_path: '',
-        genres: [],  // multiple options
-        overview: '',
-        runtime: ''
-      }
-    };
+    this.defaultFormData = this.props.formData;
     this.state = {
-      ...this.defaultFormState
+      ...this.defaultFormData
     };
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.resetForm = this.resetForm.bind(this);
   }
   handleOnChange (event) {
     const { target: { name, value } } = event;
-
     const formData = {
-      ...this.state.formData,
+      ...this.state,
       [name]: name === 'genres' ? this.addGenre(value) : value
     };
-    this.setState({ formData });
+    this.setState({ ...formData });
   }
   addGenre(genre) {
-    const { genres } = this.state.formData;
+    const { genres } = this.state;
     if (!genres.includes(genre)) {
       return genres.concat(genre);
     } else {
@@ -57,20 +38,23 @@ class MovieForm extends Component {
   //TODO: Validate and use onsubmit from props
   handleOnSubmit (event) {
     event.preventDefault();
-    alert('submited');
+    this.props.onSubmit();
   }
 
   resetForm () {
-    this.setState({ formData: this.defaultFormState.formData });
+
+    this.setState({ ...this.defaultFormData });
   }
 
   render() {
-    const { title, release_date, poster_path, genres, overview, runtime} = this.state.formData;
+    const { id, title, release_date, poster_path, genres, overview, runtime } = this.state;
     const { formTitle } = this.props;
+    console.log(id);
     return (
       <form id="MovieForm" onSubmit={this.handleOnSubmit} onReset={this.resetForm}>
         <Row>
           <h3>{formTitle}</h3>
+          {id && <InputField label='MOVIE ID' name="id" id="title" type="text"  value={id} readOnly/>}
           <InputField label='Title' name="title" id="title" type="text" onChange={this.handleOnChange} value={title} />
           <InputField label='Release Date' name="release_date" id="release_date" type="date" onChange={this.handleOnChange} value={release_date} />
           <InputField label='Poster Url' name="poster_path" id="poster_path" type="text" onChange={this.handleOnChange} value={poster_path} />

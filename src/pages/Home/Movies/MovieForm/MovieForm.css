@@ -11,6 +11,10 @@
   font-size: 20px;
   margin-bottom: 0;
 }
+#MovieForm input:read-only {
+  background-color: #232323;
+  cursor: default;
+}
 #MovieForm input[type="date"] {
   cursor: pointer;
 }

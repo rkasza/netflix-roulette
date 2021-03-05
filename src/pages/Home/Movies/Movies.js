@@ -16,7 +16,7 @@ const Movies = ({ selectedGenre, sortBy, movies, onGenreChange, onSortByChange }
       </Col>
     </Row>
     <Row className="MovieList">
-      {movies.length !== 0 ? movies.map(movie => <Movie key={movie.id} {...movie} />) : <NoMovieFound />}
+      {movies.length !== 0 ? movies.map(movie => <Movie key={movie.id} movie={movie} />) : <NoMovieFound />}
     </Row>
   </div>
 );

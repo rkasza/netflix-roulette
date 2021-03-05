@@ -1,10 +1,7 @@
 import React from 'react';
 import FindMovie from './FindMovie/FindMovie';
 import Movies from './Movies/Movies';
-import Modal from '../../components/Modal/Modal';
 import moviesJSON from '../../__mocks__/movies.json';
-import MovieForm from './Movies/MovieForm/MovieForm';
-
 const { data: movies } = moviesJSON;
 const filterByQuery = (movie, query) => movie.title.toLowerCase().search(query.toLowerCase()) !== -1
 
@@ -18,7 +15,6 @@ class Home extends React.Component {
       _movies: movies,
       query: '',
       lastQuery: '',
-      showModal: true
     };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
@@ -26,7 +22,7 @@ class Home extends React.Component {
     this.sortMoviesByRating = this.sortMoviesByRating.bind(this);
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    
   }
 
   handleGenreChange (selectedGenre) {
@@ -75,25 +71,22 @@ class Home extends React.Component {
   sortMoviesByRating (movies) {
     return movies.sort(({ vote_average: a }, { vote_average: b }) => b > a);
   }
-  closeModal () {
-    console.log('Hello There');
-    this.setState({ showModal: !this.state.showModal })
-  }
+
+ 
   render() {
-    const { selectedGenre, sortBy, movies, query, showModal } = this.state;
+    const { selectedGenre, sortBy, movies, query } = this.state;
     return ( 
       <>
         <FindMovie
           query={query}
           onSubmit={this.handleOnSubmit}
-          onChange={this.handleOnChange} 
-          onAddMovie={this.closeModal} />
+          onChange={this.handleOnChange} />
         <Movies
           selectedGenre={selectedGenre}
           sortBy={sortBy} movies={movies}
           onGenreChange={this.handleGenreChange}
           onSortByChange={this.handleSortByChange} />
-        {showModal && <Modal onClose={this.closeModal}><MovieForm formTitle="ADD MOVIE"/></Modal>}
+        
       </>
     );
   }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Button.css';
 
 const Button = ({ as = 'button', variant, children, className = '', ...htmlAttr }) => {
@@ -9,5 +10,8 @@ const Button = ({ as = 'button', variant, children, className = '', ...htmlAttr 
   }
 };
 
-//TODO: Add proptypes
+Button.propTypes = {
+  as: PropTypes.oneOf(['button', 'input']),
+  variant: PropTypes.oneOf(['primary', 'outline-primary']),
+};
 export default Button;

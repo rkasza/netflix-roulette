@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GenreList from './GenreList';
 import ReleaseYear from './ReleaseYear';
 import Image from '../../../../components/Image';
@@ -73,4 +74,7 @@ class Movie extends React.Component {
   
 };
 
+Movie.propTypes = {
+  movie: PropTypes.object
+};
 export default withModal(Movie);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Row from '../../../../components/Skeleton/Row';
 import Col from '../../../../components/Skeleton/Col';
 import InputField from '../../../../components/forms/InputField';
@@ -42,14 +43,12 @@ class MovieForm extends Component {
   }
 
   resetForm () {
-
     this.setState({ ...this.defaultFormData });
   }
 
   render() {
     const { id, title, release_date, poster_path, genres, overview, runtime } = this.state;
     const { formTitle } = this.props;
-    console.log(id);
     return (
       <form id="MovieForm" onSubmit={this.handleOnSubmit} onReset={this.resetForm}>
         <Row>
@@ -77,5 +76,8 @@ class MovieForm extends Component {
     )
   }
 }
-
+MovieForm.propTypes = {
+  formData: PropTypes.object,
+  formTitle: PropTypes.string
+};
 export default MovieForm;

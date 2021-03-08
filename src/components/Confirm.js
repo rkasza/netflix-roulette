@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button/Button';
 
 const Confirm = ({ children, onConfirm }) => {
@@ -8,6 +9,10 @@ const Confirm = ({ children, onConfirm }) => {
       <Button variant="primary" onClick={onConfirm}>CONFIRM</Button>
     </div>
   )
-}
+};
 
-export default Confirm
+Confirm.propTypes = {
+  onConfirm: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
+export default Confirm;

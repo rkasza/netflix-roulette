@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Popup.css';
 import CloseIcon from 'mdi-react/CloseIcon';
 
@@ -31,5 +32,9 @@ class Popup extends Component {
     )
   }
 }
-
+Popup.propTypes = {
+  className: PropTypes.string,
+  button: PropTypes.node.isRequired,
+  children: PropTypes.node
+};
 export default Popup;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Col from '../../Skeleton/Col';
 import './MultipleSelect.css';
+import PropTypes from 'prop-types';
 
 class MultipleSelect extends React.Component {
   constructor(props) {
@@ -49,5 +50,14 @@ class MultipleSelect extends React.Component {
     )
   }
 }
+
+MultipleSelect.propTypes = {
+  value: PropTypes.arrayOf(PropTypes.string),
+  label: PropTypes.string.isRequired,
+  error: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
 
 export default MultipleSelect

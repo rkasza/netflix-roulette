@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 class ModalWrapper extends React.Component {
   constructor(props) {
@@ -23,6 +24,11 @@ class ModalWrapper extends React.Component {
       this.el
     );
   }
+};
+
+ModalWrapper.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default ModalWrapper;

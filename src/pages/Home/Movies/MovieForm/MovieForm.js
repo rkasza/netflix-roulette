@@ -11,9 +11,8 @@ import './MovieForm.css';
 class MovieForm extends Component {
   constructor(props) {
     super(props);
-    this.defaultFormData = this.props.formData;
     this.state = {
-      ...this.defaultFormData
+      ...this.props.formData
     };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
@@ -36,14 +35,14 @@ class MovieForm extends Component {
     }
 
   }
-  //TODO: Validate and use onsubmit from props
+
   handleOnSubmit (event) {
     event.preventDefault();
     this.props.onSubmit();
   }
 
   resetForm () {
-    this.setState({ ...this.defaultFormData });
+    this.setState({ ...this.props.formData });
   }
 
   render() {
@@ -78,6 +77,7 @@ class MovieForm extends Component {
 }
 MovieForm.propTypes = {
   formData: PropTypes.object,
-  formTitle: PropTypes.string
+  formTitle: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired
 };
 export default MovieForm;

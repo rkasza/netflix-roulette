@@ -1,17 +1,8 @@
 import React from 'react'
 import Modal from '../components/Modal/Modal';
 
-// const emptyFormData = {
-//   id: null,
-//   title: '',
-//   release_date: new Date().toISOString().split('T')[0], // date,
-//   poster_path: '',
-//   genres: [],  // multiple options
-//   overview: '',
-//   runtime: '' // in minutes 
-// }
 
-const withModal = (WrappedComponent, getFormData, onSubmit) => {
+const withModal = (WrappedComponent) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -24,7 +15,7 @@ const withModal = (WrappedComponent, getFormData, onSubmit) => {
       this.openModal = this.openModal.bind(this);
     }
     closeModal () {
-      this.setState({ showModal: !this.state.showModal, modalBody: null })
+      this.setState({ showModal: !this.state.showModal, modalBody: null });
     }
     openModal(modalBody, modalClassName) {
       this.setState({ showModal: true, modalBody, modalClassName });
@@ -35,14 +26,11 @@ const withModal = (WrappedComponent, getFormData, onSubmit) => {
       return (
         <>
           <WrappedComponent openModal={this.openModal} {...this.props}/>
-          {showModal && (
-            //(ADD-EDIT)-DELETE
-            <Modal onClose={this.closeModal} className={modalClassName}>{modalBody}</Modal>
-          )}
+          {showModal && <Modal onClose={this.closeModal} className={modalClassName}>{modalBody}</Modal>}
         </>
       );
     }
   }
 }
 //
-export default withModal
+export default withModal;

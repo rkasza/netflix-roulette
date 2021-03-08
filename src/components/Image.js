@@ -17,9 +17,7 @@ import PropTypes from 'prop-types';
   }
   render() {
     const { src } = this.state;
-    // need to take out src from props because it will overwrite the fallback src if not found
-    const { src: _src, ...props } = this.props;
-    return <img src={src}  {...props} onError={this.handleOnError} /> //eslint-disable-line
+    return <img src={src}  {...this.props} onError={this.handleOnError} />; //eslint-disable-line
   }
 }
 Image.propTypes = {

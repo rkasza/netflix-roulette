@@ -1,0 +1,12 @@
+button.primary,
+input[type="submit"].primary {
+  background-color: #f65261;
+  border: 1px solid #f65261;
+  color: #fff;
+}
+button.outline-primary,
+input[type="submit"].outline-primary,
+input[type="reset"].outline-primary {
+  border: 1px solid #f65261;
+  color: #f65261;
+}

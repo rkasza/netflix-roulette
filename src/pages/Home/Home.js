@@ -3,7 +3,6 @@ import FindMovie from './FindMovie/FindMovie';
 import Movies from './Movies/Movies';
 import moviesJSON from '../../__mocks__/movies.json';
 const { data: movies } = moviesJSON;
-
 const filterByQuery = (movie, query) => movie.title.toLowerCase().search(query.toLowerCase()) !== -1
 
 class Home extends React.Component {
@@ -15,7 +14,7 @@ class Home extends React.Component {
       movies:this.sortMoviesByDate(movies),
       _movies: movies,
       query: '',
-      lastQuery: ''
+      lastQuery: '',
     };
     this.handleOnChange = this.handleOnChange.bind(this);
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
@@ -23,6 +22,7 @@ class Home extends React.Component {
     this.sortMoviesByRating = this.sortMoviesByRating.bind(this);
     this.handleGenreChange = this.handleGenreChange.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
+    
   }
 
   handleGenreChange (selectedGenre) {
@@ -72,6 +72,7 @@ class Home extends React.Component {
     return movies.sort(({ vote_average: a }, { vote_average: b }) => b > a);
   }
 
+ 
   render() {
     const { selectedGenre, sortBy, movies, query } = this.state;
     return ( 
@@ -84,7 +85,8 @@ class Home extends React.Component {
           selectedGenre={selectedGenre}
           sortBy={sortBy} movies={movies}
           onGenreChange={this.handleGenreChange}
-          onSortByChange={this.handleSortByChange}/>
+          onSortByChange={this.handleSortByChange} />
+        
       </>
     );
   }

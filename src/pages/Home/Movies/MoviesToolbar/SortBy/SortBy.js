@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Col from '../../../../../components/Skeleton/Col';
 import './SortBy.css';
+
 const SortBy = ({ onChange, value = 1 }) => {
   return (
     <Col size={6} className="SortByWrapper">
@@ -11,6 +13,11 @@ const SortBy = ({ onChange, value = 1 }) => {
       </select>
     </Col>
   );
+};
+
+SortBy.propTypes = {
+  value: PropTypes.any.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default SortBy;

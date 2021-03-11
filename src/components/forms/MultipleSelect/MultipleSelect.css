@@ -1,0 +1,64 @@
+.MultipleSelect {
+  position: relative;
+}
+
+.MultipleSelect .MultipleSelectOptions {
+  position: absolute;
+  background-color: #222222;
+  width: 100%;
+  top: 75px;
+  border-radius: 3px;
+  box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.4);
+  padding: .5em 1em;
+  box-sizing: border-box;
+}
+.MultipleSelect .MultipleSelectValue {
+  cursor: pointer;
+  background-color: #2e2e2e;
+  border: none;
+  border-radius: 3px;
+  height: 44px;
+  padding: 6px 10px;
+  font-size: 18px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-content: center;
+}
+.MultipleSelectOption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.3em 0;
+  cursor: pointer;
+}
+
+.MultipleSelectOption .Checkmark {
+  height: 15px;
+  width: 15px;
+  background-color: #fff;
+  margin-right: .5em;
+}
+.MultipleSelectOption input[type="checkbox"]:checked ~ .Checkmark {
+  background-color: #f65261;
+}
+.MultipleSelectOption input[type="checkbox"] {
+  display: none;
+}
+.MultipleSelectOption input[type="checkbox"]:checked ~ .Checkmark::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 9px;
+  width: 3px;
+  height: 8px;
+  border: solid white;
+      border-top-width: medium;
+      border-right-width: medium;
+      border-bottom-width: medium;
+      border-left-width: medium;
+  border-width: 0 4px 4px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

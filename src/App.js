@@ -8,8 +8,8 @@ import './assets/css/App.css';
 function App() {
   return (
     <ErrorBoundary>
-      <Container>
-        <Home />
+      <Container className="PageContent">
+        <Home />    
         <footer><Logo fontSize='18px' /></footer>
       </Container>
     </ErrorBoundary>

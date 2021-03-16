@@ -1,29 +1,27 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-class ModalWrapper extends React.Component {
-  constructor(props) {
-    super(props);
-    this.el = document.createElement('div');
-    this.el.className = `Modal ${this.props.className}`;
-  }
-  componentDidMount() {
-    document.body.appendChild(this.el);
+const ModalWrapper = props => {
+  const [el] = useState(() => {
+    let modalWrapper = document.createElement('div');
+    modalWrapper.className = `Modal ${props.className}`;
+
+    return modalWrapper;
+  });
+  useEffect(() => {
+    document.body.appendChild(el);
     document.body.classList.add('ModalActive');
-  }
-
-  componentWillUnmount() {
-      document.body.removeChild(this.el);
+    return () => {
+      document.body.removeChild(el);
       document.body.classList.remove('ModalActive');
-  }
-
-  render () {
-    return ReactDOM.createPortal(
-      this.props.children,
-      this.el
-    );
-  }
+    }
+  }, [el]);
+  
+  return  ReactDOM.createPortal(
+    props.children,
+    el
+  );
 };
 
 ModalWrapper.propTypes = {

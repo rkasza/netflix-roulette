@@ -5,50 +5,35 @@ import Col from '../../../components/Skeleton/Col';
 import HeroImage from '../HeroImage/HeroImage';
 import Logo from '../../../components/Logo/Logo';
 import MovieFilter from './MovieFilter';
-import withModal from '../../../hoc/withModal';
 import MovieForm from '../Movies/MovieForm/MovieForm';
+import useModal from '../../../hooks/useModal';
 
-const emptyFormData = {
-  id: null,
-  title: '',
-  release_date: new Date().toISOString().split('T')[0], // date,
-  poster_path: '',
-  genres: [],  // multiple options
-  overview: '',
-  runtime: '' // in minutes 
-}
+const FindMovie = props => {
+  const { onSubmit, query, onChange  } = props;
+  const { modal, openModal } = useModal();
 
-class FindMovie extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formData: emptyFormData,
-    }
-    this.openAddModal = this.openAddModal.bind(this);
+  const handleOnClick = () => {
+   const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={() => alert('Movie Created')} />;
+   openModal(modalBody, 'MovieForm');
   }
-  openAddModal() {
-    const newMovieForm = <MovieForm formTitle="ADD MOVIE" formData={emptyFormData} onSubmit={() => alert('Movie Created')} />;
-    this.props.openModal(newMovieForm, 'MovieForm');
-  }
-  render() {
-    
-    const { onSubmit, query, onChange  } = this.props;
-    
-    return (
+
+  return (
+    <>
       <Row className="FindMovieWrapper">
         <Col size={12}>
           <HeroImage image="/images/movie-montage.jpg">
               <div className="header">
                 <Logo />
-                <button className="button AddMovie" type="button" onClick={this.openAddModal}>+ ADD MOVIE</button>
+                <button className="button AddMovie" type="button" onClick={handleOnClick}>+ ADD MOVIE</button>
               </div>
               <MovieFilter onChange={onChange} onSubmit={onSubmit} query={query} />
           </HeroImage>
         </Col>
       </Row>
-    )
-  }
-}
+      {modal}
+    </>
+  );
+};
 
 FindMovie.propTypes = {
   onSubmit: PropTypes.func,
@@ -57,4 +42,4 @@ FindMovie.propTypes = {
   query: PropTypes.string,
 };
 
-export default withModal(FindMovie);
+export default FindMovie;

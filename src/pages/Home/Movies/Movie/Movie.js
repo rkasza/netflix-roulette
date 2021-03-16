@@ -16,7 +16,7 @@ const Movie = props => {
 
   const openEditModal = () => {
     const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={props.movie} onSubmit={() => alert('Movie Edited')} />;
-    openModal(modalBody, 'MovieForm');
+    openModal(modalBody, 'MovieFormModal');
   }
 
   const openConfrim = () => {

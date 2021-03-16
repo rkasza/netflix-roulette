@@ -14,7 +14,7 @@ const FindMovie = props => {
 
   const handleOnClick = () => {
    const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={() => alert('Movie Created')} />;
-   openModal(modalBody, 'MovieForm');
+   openModal(modalBody, 'MovieFormModal');
   }
 
   return (

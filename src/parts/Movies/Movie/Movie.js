@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import GenreList from './GenreList';
 import ReleaseYear from './ReleaseYear';
-import Image from '../../../../components/Image';
+import Image from '../../../components/Image';
 import DotsVerticalIcon from 'mdi-react/DotsVerticalIcon'
-import Popup from '../../../../components/Popup/Popup';
+import Popup from '../../../components/Popup/Popup';
 import MovieMenu from './MovieMenu';
-import MovieForm from '../MovieForm/MovieForm';
-import Confirm from '../../../../components/Confirm';
-import useModal from '../../../../hooks/useModal';
+import MovieForm from '../../MovieForm/MovieForm';
+import Confirm from '../../../components/Confirm';
+import useModal from '../../../hooks/useModal';
 
 const Movie = props => {
   const [showPopup, setShowPopup] = useState(false);

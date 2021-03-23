@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Row from '../../../../components/Skeleton/Row';
+import Row from '../../../components/Skeleton/Row';
 import Genres from './Genres/Genres';
 import SortBy from './SortBy/SortBy';
 

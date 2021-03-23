@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Row from '../../../components/Skeleton/Row';
 import Col from '../../../components/Skeleton/Col';
-import HeroImage from '../HeroImage/HeroImage';
+import HeroImage from '../../../parts/HeroImage/HeroImage';
 import Logo from '../../../components/Logo/Logo';
 import MovieFilter from './MovieFilter';
-import MovieForm from '../Movies/MovieForm/MovieForm';
+import MovieForm from '../../../parts/MovieForm/MovieForm';
 import useModal from '../../../hooks/useModal';
 
 const FindMovie = props => {

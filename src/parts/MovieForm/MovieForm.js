@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Row from '../../../../components/Skeleton/Row';
-import Col from '../../../../components/Skeleton/Col';
-import InputField from '../../../../components/forms/InputField';
-import Button from '../../../../components/Button/Button';
-import MultipleSelect from '../../../../components/forms/MultipleSelect/MultipleSelect';
-import MultipleSelectOption from '../../../../components/forms/MultipleSelect/MultipleSelectOption';
+import Row from '../../components/Skeleton/Row';
+import Col from '../../components/Skeleton/Col';
+import InputField from '../../components/forms/InputField';
+import Button from '../../components/Button/Button';
+import MultipleSelect from '../../components/forms/MultipleSelect/MultipleSelect';
+import MultipleSelectOption from '../../components/forms/MultipleSelect/MultipleSelectOption';
 import './MovieForm.css';
 
 const MovieForm = props => {

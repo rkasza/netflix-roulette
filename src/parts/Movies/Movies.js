@@ -4,8 +4,8 @@ import MoviesToolbar from './MoviesToolbar/MoviesToolbar';
 import NoMovieFound from './NoMovieFound';
 import './Movies.css';
 import Movie from './Movie/Movie';
-import Row from '../../../components/Skeleton/Row';
-import Col from '../../../components/Skeleton/Col';
+import Row from '../../components/Skeleton/Row';
+import Col from '../../components/Skeleton/Col';
 
 const Movies = ({ selectedGenre, sortBy, movies, onGenreChange, onSortByChange }) => (
   <div className="MovieListWrapper">

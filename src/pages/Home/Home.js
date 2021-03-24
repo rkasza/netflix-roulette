@@ -1,68 +1,44 @@
-import React, { useState, useEffect, useRef } from 'react';
-import FindMovie from './FindMovie/FindMovie';
-import Movies from '../../parts/Movies/Movies';
-import moviesJSON from '../../__mocks__/movies.json';
-import { arraySortFactory } from '../../util/util';
-const { data: _movies } = moviesJSON;
+import React from 'react';
+import PropTypes from 'prop-types';
+import Row from '../../components/Skeleton/Row';
+import Col from '../../components/Skeleton/Col';
+import HeroImage from '../../parts/HeroImage/HeroImage';
+import Logo from '../../components/Logo/Logo';
+import MovieFilter from './MovieFilter';
+import MovieForm from '../../parts/MovieForm/MovieForm';
+import useModal from '../../hooks/useModal';
 
-const filterByQuery = (movie, query) => movie.title.toLowerCase().search(query.toLowerCase()) !== -1;
+const FindMovie = props => {
+  const { onSubmit, query, onChange  } = props;
+  const { modal, openModal } = useModal();
 
-const compareReleaseDates = ({ release_date: a }, { release_date: b }) => b.localeCompare(a);
-const sortMoviesByDate  = arraySortFactory(compareReleaseDates);
+  const handleOnClick = () => {
+   const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={() => alert('Movie Created')} />;
+   openModal(modalBody, 'MovieFormModal');
+  }
 
-const compareRating = ({ vote_average: a }, { vote_average: b }) => b > a;
-const sortMoviesByRating = arraySortFactory(compareRating);
-
-
-const Home = props => {
-  //TODO: DefaultValue
-  const [movies, setMovies] = useState(_movies);
-  const lastQuery = useRef('');
-  const [selectedGenre, setSelectedGenre] = useState('All');
-  const [sortBy, setSortBy] = useState(1);
-  //TODO: LastQuery
-  const [query, setQuery] = useState('');
-
-  const filterMovies = () => {
-    const sortMoviesBy = sortBy === 1 ? sortMoviesByDate : sortMoviesByRating;
-    let filteredMovies = sortMoviesBy(_movies.filter(({ genres }) => selectedGenre === 'All' || genres.includes(selectedGenre)));
-    if (query !== '') {
-      filteredMovies = filteredMovies.filter(movie => filterByQuery(movie, query));
-    }
-    return filteredMovies;
-  };
-
-  const handleOnSubmit = event => {
-    event.preventDefault();
-    if (query !== lastQuery.current) {
-      setMovies(filterMovies());
-      lastQuery.current = query;
-    }
-  };
-
-  useEffect(() => {
-    const sortMoviesBy = sortBy === 1 ? sortMoviesByDate : sortMoviesByRating;
-    setMovies(m => sortMoviesBy(m));
-  }, [sortBy]); // eslint-disable-line
-
-  useEffect(() => {
-      setMovies(filterMovies());
-  }, [selectedGenre]); // eslint-disable-line
-
-  return ( 
+  return (
     <>
-      <FindMovie
-        query={query}
-        onSubmit={handleOnSubmit}
-        onChange={e => setQuery(e.target.value)} />
-      <Movies
-        selectedGenre={selectedGenre}
-        sortBy={sortBy} 
-        movies={movies}
-        onGenreChange={setSelectedGenre}
-        onSortByChange={setSortBy} />
+      <Row className="FindMovieWrapper">
+        <Col size={12}>
+          <HeroImage image="/images/movie-montage.jpg">
+              <div className="header">
+                <Logo />
+                <button className="button AddMovie" type="button" onClick={handleOnClick}>+ ADD MOVIE</button>
+              </div>
+              <MovieFilter onChange={onChange} onSubmit={onSubmit} query={query} />
+          </HeroImage>
+        </Col>
+      </Row>
+      {modal}
     </>
   );
 };
 
-export default Home;
+FindMovie.propTypes = {
+  onSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  query: PropTypes.string,
+};
+
+export default FindMovie;

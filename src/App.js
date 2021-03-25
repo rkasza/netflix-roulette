@@ -28,10 +28,11 @@ function App() {
   const viewMovieDetails = useCallback(movie => setMovie(movie), [setMovie]);
   const backHome = useCallback(() => setMovie(null), [setMovie]);
 
+  const Header = () => movie ?  <MovieDetails movie={movie} backHome={backHome}/> : <Home query={query} onSubmit={handleOnSubmit} onChange={handleOnChange} />;
   return (
     <ErrorBoundary>
       <Container className="PageContent">
-        {movie ?  <MovieDetails movie={movie} backHome={backHome}/> : <Home query={query} onSubmit={handleOnSubmit} onChange={handleOnChange} />}
+        <Header />
         <Movies
           viewMovieDetails={viewMovieDetails}
           selectedGenre={selectedGenre}

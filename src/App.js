@@ -1,9 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
-import Home from './pages/Home/Home';
+import Header from './parts/Header';
 import Logo from './components/Logo/Logo';
 import Container from  './components/Skeleton/Container';
-import MovieDetails from './pages/MovieDetails/MovieDetails';
 import Movies from './parts/Movies/Movies';
 import useMovies from './hooks/useMovies';
 import moviesJSON from './__mocks__/movies.json';
@@ -28,11 +27,15 @@ function App() {
   const viewMovieDetails = useCallback(movie => setMovie(movie), [setMovie]);
   const backHome = useCallback(() => setMovie(null), [setMovie]);
 
-  const Header = () => movie ?  <MovieDetails movie={movie} backHome={backHome}/> : <Home query={query} onSubmit={handleOnSubmit} onChange={handleOnChange} />;
   return (
     <ErrorBoundary>
       <Container className="PageContent">
-        <Header />
+        <Header
+          movie={movie}
+          onChange={handleOnChange}
+          query={query}
+          onSubmit={handleOnSubmit}
+          backHome={backHome}/>
         <Movies
           viewMovieDetails={viewMovieDetails}
           selectedGenre={selectedGenre}

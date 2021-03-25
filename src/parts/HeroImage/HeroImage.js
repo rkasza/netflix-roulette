@@ -17,7 +17,7 @@ const HeroImage = ({ className = '', children, image = '', alpha= 0.85 }) => {
 HeroImage.propTypes = {
   className: PropTypes.string,
   image: PropTypes.string,
-  alphaTop:PropTypes.number
+  alpha:PropTypes.number
 };
 
 export default HeroImage;

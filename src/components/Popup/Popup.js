@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import './Popup.css';
 import CloseIcon from 'mdi-react/CloseIcon';
 
-const Popup = props => {
+const Popup = ({ button, children }) => {
   const [show, setShow] = useState(false);
   const togglePopup = () => setShow(!show);
-  const { button, children } = props;
   return (
     <div className="PopupWrapper">
       <div onClick={togglePopup}>

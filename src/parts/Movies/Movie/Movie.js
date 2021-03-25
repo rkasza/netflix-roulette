@@ -10,12 +10,12 @@ import MovieForm from '../../MovieForm/MovieForm';
 import Confirm from '../../../components/Confirm';
 import useModal from '../../../hooks/useModal';
 
-const Movie = React.memo(props => {
+const Movie = React.memo(({ movie, viewMovieDetails }) => {
   const [showPopup, setShowPopup] = useState(false);
   const { modal, openModal } = useModal();
 
   const openEditModal = () => {
-    const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={props.movie} onSubmit={() => alert('Movie Edited')} />;
+    const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={movie} onSubmit={() => alert('Movie Edited')} />;
     openModal(modalBody, 'MovieFormModal');
   };
 
@@ -32,8 +32,7 @@ const Movie = React.memo(props => {
   const handleOnMouseEnter = () => setShowPopup(true);
   const handleOnMouseLeave = () => setShowPopup(false);
 
-  const { movie, viewMovieDetails } = props;
-  const {title, poster_path, release_date, genres } = movie;
+  const { title, poster_path, release_date, genres } = movie;
 
   return (
     <>

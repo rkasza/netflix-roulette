@@ -8,8 +8,8 @@ import MultipleSelect from '../../components/forms/MultipleSelect/MultipleSelect
 import MultipleSelectOption from '../../components/forms/MultipleSelect/MultipleSelectOption';
 import './MovieForm.css';
 
-const MovieForm = props => {
-  const [formData, setFormData] = useState(props.formData);
+const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {
+  const [formData, setFormData] = useState(defaultFormData);
 
   const addGenre = genre => {
     const { genres } = formData;
@@ -32,15 +32,15 @@ const MovieForm = props => {
 
   const handleOnSubmit = event => {
     event.preventDefault();
-    props.onSubmit();
+    onSubmit();
   };
 
   const resetForm = () => {
-    setFormData({ ...props.formData });
+    setFormData({ ...defaultFormData });
   };
 
   const { id, title, release_date, poster_path, genres, overview, runtime } = formData;
-  const { formTitle } = props;
+
   return (
     <form id="MovieForm" onSubmit={handleOnSubmit} onReset={resetForm}>
       <Row>

@@ -8,8 +8,7 @@ import MovieFilter from './MovieFilter';
 import MovieForm from '../../parts/MovieForm/MovieForm';
 import useModal from '../../hooks/useModal';
 
-const FindMovie = props => {
-  const { onSubmit, query, onChange  } = props;
+const Home = ({ onSubmit, query, onChange }) => {
   const { modal, openModal } = useModal();
 
   const handleOnClick = () => {
@@ -35,10 +34,10 @@ const FindMovie = props => {
   );
 };
 
-FindMovie.propTypes = {
+Home.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
   query: PropTypes.string,
 };
 
-export default FindMovie;
+export default Home;

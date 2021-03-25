@@ -3,10 +3,10 @@ import Col from '../../Skeleton/Col';
 import './MultipleSelect.css';
 import PropTypes from 'prop-types';
 
-const MultipleSelect = props => {
+const MultipleSelect = ({ label, value, error = '', children, onChange, name }) => {
   const [showOptions, setShowOptions] = useState(false);
   const wrapperRef = useRef();
- 
+
   useEffect(() => {
     const handleOutsideClick = event => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target) && showOptions) {
@@ -21,11 +21,9 @@ const MultipleSelect = props => {
     setShowOptions(!showOptions);
   }
 
-  const addParentPropsToChildren = (option, key) => {
-    const { value, onChange, name } = props;
-    return React.cloneElement(option, { name, onChange, key, checked: value.includes(option.props.children)})
-  }
-  const { label, value, error = '', children } = props;
+  const addParentPropsToChildren = (option, key) => 
+    React.cloneElement(option, { name, onChange, key, checked: value.includes(option.props.children)});
+  
   const selectValue = value.length === 0 ?  'Select a Genre': value.join(', ');
 
   return (

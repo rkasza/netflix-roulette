@@ -58,12 +58,16 @@
   font-size: 12px;
   color: #909090;
 }
-.Movie .Info h5 span {
+.Movie .Info h5 span.ReleaseYear {
   float: right;
   border: 1px solid #fff;
   border-radius: 3px;
   padding: 1px 12px;
   line-height: initial;
+}
+.Movie .Info .MovieTitle:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .Movie .MovieMenu {
   display: flex;

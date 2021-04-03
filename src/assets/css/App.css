@@ -16,6 +16,9 @@ footer {
   height: 30vh;
   padding: 4em;
 }
-.Modal.MovieForm {
+.Modal.MovieFormModal {
   min-height: 75vh;
+}
+.container.PageContent {
+  padding-top: 3em;
 }

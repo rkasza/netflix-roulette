@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Col from '../../../components/Skeleton/Col';
-import Row from '../../../components/Skeleton/Row';
+import Col from '../../components/Skeleton/Col';
+import Row from '../../components/Skeleton/Row';
 import './FindMovie.css';
 
 const MovieFilter = ({ onSubmit, onChange, query }) => (

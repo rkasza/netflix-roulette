@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Col from '../../../../../components/Skeleton/Col';
+import Col from '../../../../components/Skeleton/Col';
 import Genre from './Genre';
 import './Genres.css';
 

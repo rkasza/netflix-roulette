@@ -4,18 +4,18 @@ import Row from '../../../components/Skeleton/Row';
 import Genres from './Genres/Genres';
 import SortBy from './SortBy/SortBy';
 
-const MovieListController = React.memo(({ selectedGenre, sortBy, onGenreChange, onSortByChange }) => (
-  <Row className="ResultController">
+const MoviesToolbar = React.memo(({ selectedGenre, sortBy, onGenreChange, onSortByChange }) => (
+  <Row className="MoviesToolbar">
     <Genres selected={selectedGenre} handleSelect={onGenreChange} />
     <SortBy value={sortBy} onChange={onSortByChange} />
   </Row>
 ));
 
-MovieListController.propTypes = {
+MoviesToolbar.propTypes = {
   selectedGenre: PropTypes.string,
-  sortBy: PropTypes.number,
+  sortBy: PropTypes.string,
   onGenreChange: PropTypes.func.isRequired,
   onSortByChange: PropTypes.func.isRequired
 };
 
-export default MovieListController;
+export default MoviesToolbar;

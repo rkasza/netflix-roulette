@@ -21,13 +21,15 @@ const defaultOptions = {
 
 const _fetch = params => options => fetch(MovieApiUrlBuilder(params), { ...defaultOptions, ...options }).then(handleResponse);
 
-export const MovieService = {
+const MovieService = {
   //searcBy, sortby, getMovies returns result in response.data
-  getMovies: async () => await _fetch({ limit: 6 })().then(({ data}) => data), // GET
+  getMovies: async () => await _fetch({ limit: 6 })(), // GET
   createMovie: async newMovie => await _fetch()({ method: 'POST', body: newMovie }), // POST
   updateMovies: async updatedMovie => await _fetch()({ method: 'PUT', body: updatedMovie }), // PUT
   getMovie: async id => await _fetch({ id })(), // GET + movieId
   deleteMovie: async id => await _fetch({ id })({ method: 'DELETE' }), // DELETE + movieId
-  searchBy: async (search, searchBy) => await _fetch({ limit: 6, search, searchBy })().then(({ data}) => data),
-  sortBy: async sortBy => await _fetch({ limit: 6, sortOrder: 'desc', sortBy })().then(({ data}) => data)
-}
+  searchBy: async (search, searchBy) => await _fetch({ limit: 6, search, searchBy })(),
+  sortBy: async sortBy => await _fetch({ limit: 6, sortOrder: 'desc', sortBy })()
+};
+
+export default MovieService;

@@ -6,7 +6,7 @@
 .active {
   color: #f56261
 }
-.ResultController {
+.MoviesToolbar {
   margin-bottom: 1em;
 }
 .NoMovieFound {
@@ -48,6 +48,7 @@
 .Movie .Poster img {
   max-width: 100%;
   width: 100%;
+  height: 490px;
 }
 
 .Movie .Info h5 {

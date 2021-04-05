@@ -7,12 +7,12 @@ import Movie from './Movie/Movie';
 import Row from '../../components/Skeleton/Row';
 import Col from '../../components/Skeleton/Col';
 
-const Movies = React.memo(({ viewMovieDetails, selectedGenre, sortBy, movies, onGenreChange, onSortByChange }) => (
+const Movies = React.memo(({ viewMovieDetails, selectedGenre, sortBy, movies, onGenreChange, onSortByChange, numberOfResults }) => (
   <div className="MovieListWrapper">
     <MoviesToolbar selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={onGenreChange} onSortByChange={onSortByChange}/>
     <Row>
       <Col size={12}>
-        <span style={{ fontSize: '20px' }}>{`${movies.length} movies found`}</span>
+        <span style={{ fontSize: '20px' }}>{`${numberOfResults} movies found`}</span>
       </Col>
     </Row>
     <Row className="MovieList">
@@ -23,7 +23,7 @@ const Movies = React.memo(({ viewMovieDetails, selectedGenre, sortBy, movies, on
 
 Movies.propTypes = {
   selectedGenre: PropTypes.string,
-  sortBy: PropTypes.number,
+  sortBy: PropTypes.string,
   onGenreChange: PropTypes.func.isRequired,
   onSortByChange: PropTypes.func.isRequired,
   movies: PropTypes.array

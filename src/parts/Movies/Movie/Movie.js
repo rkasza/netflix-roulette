@@ -50,7 +50,7 @@ const Movie = React.memo(({ movie, viewMovieDetails }) => {
         </div>
         <div className="Info">
           <h5>
-            <span onClick={() => viewMovieDetails(movie)}className="MovieTitle">{title}</span>
+            <span onClick={() => viewMovieDetails(movie.id)}className="MovieTitle">{title}</span>
             <ReleaseYear>{release_date}</ReleaseYear>
           </h5>
           <GenreList genres={genres} />

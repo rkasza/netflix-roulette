@@ -1,31 +1,30 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './parts/Header';
 import Logo from './components/Logo/Logo';
 import Container from  './components/Skeleton/Container';
 import Movies from './parts/Movies/Movies';
-import useMovies from './hooks/useMovies';
-import moviesJSON from './__mocks__/movies.json';
 import './assets/css/App.css';
+import * as actions from './store/actions/movies';
 
+function App({ movies, movie, getMovies, numberOfResults, viewMovieDetails, backHome }) {
+  const [selectedGenre, setSelectedGenre] = useState('All');
+  const [sortBy, setSortBy] = useState('release_date');
+  const [query, setQuery] = useState('');
 
-const { data: _movies } = moviesJSON;
+  useEffect(() => {
+    //Fetch movies
+    getMovies();
+  }, [getMovies]);
 
-function App() {
-  const [movie, setMovie] = useState(null);
-  const { movies,
-    sortBy,
-    query,
-    selectedGenre,
-    setQuery,
-    setSortBy,
-    setSelectedGenre,
-    handleOnSubmit
-  } = useMovies(_movies);
-
+  const handleOnSubmit = event => {
+    event.preventDefault();
+    alert('Submiteddddd!!!!');
+  };
+  
+  
   const handleOnChange = e => setQuery(e.target.value);
-  const viewMovieDetails = useCallback(movie => setMovie(movie), [setMovie]);
-  const backHome = useCallback(() => setMovie(null), [setMovie]);
 
   return (
     <ErrorBoundary>
@@ -41,6 +40,7 @@ function App() {
           selectedGenre={selectedGenre}
           sortBy={sortBy} 
           movies={movies}
+          numberOfResults={numberOfResults}
           onGenreChange={setSelectedGenre}
           onSortByChange={setSortBy} />
         <footer><Logo fontSize='18px' /></footer>
@@ -49,4 +49,16 @@ function App() {
   );
 }
 
-export default App;
+const mapsStateToProps = ({ movies, totalAmount, movie }) => ({
+  movies,
+  movie,
+  numberOfResults: totalAmount
+});
+
+const mapDispatchToProps = dispatch => ({
+  getMovies: () => dispatch(actions.getMovies()),
+  viewMovieDetails: movieId => dispatch(actions.getMovie(movieId)),
+  backHome: () => dispatch(actions.storeMovie(null))
+});
+
+export default connect(mapsStateToProps, mapDispatchToProps)(App);

@@ -20,16 +20,16 @@ const defaultOptions = {
 };
 
 const _fetch = params => options => fetch(MovieApiUrlBuilder(params), { ...defaultOptions, ...options }).then(handleResponse);
-
+//TODO: use getMovies for filtering by genre and title, and sorting
 const MovieService = {
   //searcBy, sortby, getMovies returns result in response.data
-  getMovies: async () => await _fetch({ limit: 6 })(), // GET
+  getMovies: async params => await _fetch({ limit: 6, sortOrder: 'desc', ...params })(), // GET
   createMovie: async newMovie => await _fetch()({ method: 'POST', body: newMovie }), // POST
   updateMovies: async updatedMovie => await _fetch()({ method: 'PUT', body: updatedMovie }), // PUT
   getMovie: async id => await _fetch({ id })(), // GET + movieId
   deleteMovie: async id => await _fetch({ id })({ method: 'DELETE' }), // DELETE + movieId
   searchBy: async (search, searchBy) => await _fetch({ limit: 6, search, searchBy })(),
-  sortBy: async sortBy => await _fetch({ limit: 6, sortOrder: 'desc', sortBy })()
+  sortBy: async sortBy => await _fetch({ limit: 6, sortOrder: 'desc', sortBy })(),
 };
 
 export default MovieService;

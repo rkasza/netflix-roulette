@@ -6,15 +6,15 @@ import './Genres.css';
 
 const genres = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime']
 
-const Genres = ({ selected, handleSelect }) => (
+const Genres = ({ selected, onGenreChange }) => (
   <Col size={6} className="GenreWrapper">
-    {genres.map(genre => <Genre key={genre} active={selected === genre} genre={genre} handleSelect={handleSelect}/>)}
+    {genres.map(genre => <Genre key={genre} active={selected === genre} genre={genre} handleGenreChange={onGenreChange}/>)}
   </Col>
 );
 
 Genres.propTypes = {
   selected: PropTypes.string.isRequired,
-  handleSelect: PropTypes.func.isRequired,
+  onGenreChange: PropTypes.func.isRequired,
 };
 
 export default Genres;

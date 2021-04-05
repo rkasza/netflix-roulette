@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './parts/Header';
 import Logo from './components/Logo/Logo';
 import Container from  './components/Skeleton/Container';
 import Movies from './parts/Movies/Movies';
 import './assets/css/App.css';
-import * as actions from './store/actions/movies';
 
-function App({ movies, movie, getMovies, numberOfResults, viewMovieDetails, backHome }) {
+function App({ movies = [], movie = null, getMovies = console.log, numberOfResults = 10, viewMovieDetails = console.log, backHome = console.log }) {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [sortBy, setSortBy] = useState('release_date');
   const [query, setQuery] = useState('');
 
   useEffect(() => {
     //Fetch movies
-    getMovies();
+    getMovies('HELLO THERE');
   }, [getMovies]);
 
   const handleOnSubmit = event => {
@@ -49,16 +47,16 @@ function App({ movies, movie, getMovies, numberOfResults, viewMovieDetails, back
   );
 }
 
-const mapsStateToProps = ({ movies, totalAmount, movie }) => ({
-  movies,
-  movie,
-  numberOfResults: totalAmount
-});
+// const mapsStateToProps = ({ movies, totalAmount, movie }) => ({
+//   movies,
+//   movie,
+//   numberOfResults: totalAmount
+// });
 
-const mapDispatchToProps = dispatch => ({
-  getMovies: () => dispatch(actions.getMovies()),
-  viewMovieDetails: movieId => dispatch(actions.getMovie(movieId)),
-  backHome: () => dispatch(actions.storeMovie(null))
-});
+// const mapDispatchToProps = dispatch => ({
+//   getMovies: () => dispatch(actions.getMovies()),
+//   viewMovieDetails: movieId => dispatch(actions.getMovie(movieId)),
+//   backHome: () => dispatch(actions.storeMovie(null))
+// });
 
-export default connect(mapsStateToProps, mapDispatchToProps)(App);
+export default App;

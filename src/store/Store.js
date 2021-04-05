@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
-import movieReducer from "./reducers/movie";
+import rootReducer from './reducers/rootReducer';
 
 
 const logger = store => {
@@ -16,7 +16,7 @@ const logger = store => {
   }
 };
 
-const store = createStore(movieReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const Store = ({ children }) => <Provider store={store}>{children}</Provider>;
 

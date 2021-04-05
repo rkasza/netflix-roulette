@@ -9,7 +9,7 @@ const initialState = {
   totalAmount: 0
 };
 
-const rootReducer = (state = initialState, { type, payload }) => {
+const movieReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case actionTypes.GET_MOVIES:
       return {
@@ -27,4 +27,4 @@ const rootReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default rootReducer;
+export default movieReducer;

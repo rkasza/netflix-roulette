@@ -16,7 +16,7 @@ const logger = store => {
   }
 };
 
-const store = createStore(movieReducer, applyMiddleware(thunk, logger));
+const store = createStore(movieReducer, applyMiddleware(thunk));
 
 const Store = ({ children }) => <Provider store={store}>{children}</Provider>;
 

@@ -1,24 +1,21 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import React from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import * as movieActions from '../../../store/actions/movieActions'
 import Row from '../../../components/Skeleton/Row';
 import Genres from './Genres/Genres';
 import SortBy from './SortBy/SortBy';
 // Dispatch sort/filter functions here useEffect maybe?
 const MoviesToolbar = () => {
-  const [genre, setSelectedGenre] = useState('All');
-  const [sortBy, setSortBy] = useState('release_date');
+  const { genre, sortBy } = useSelector(({ movieState }) => movieState);
   const dispatch = useDispatch();
-  //TODO: Handle if genre is All
+  
   const handleGenreChange = newGenre => {
-    setSelectedGenre(newGenre);
-    dispatch(movieActions.getMovies({ search: newGenre, searchBy: 'genres', sortBy }));
+    if (genre !== newGenre) {
+      dispatch(movieActions.updateMovieParamAndGetMovies({ genre: newGenre }))
+    }
   };
+  const handleSortByChange = newSortBy => dispatch(movieActions.updateMovieParamAndGetMovies({ sortBy: newSortBy }));
 
-  const handleSortByChange = newSortByValue => {
-    setSortBy(newSortByValue);
-    dispatch(movieActions.getMovies({ search: genre, searchBy: 'genres', sortBy: newSortByValue }));
-  };
   return (
     <Row className="MoviesToolbar">
       <Genres selected={genre} onGenreChange={handleGenreChange} />

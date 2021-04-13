@@ -13,6 +13,6 @@ export const handleResponse = async response => {
     body = await response.text();
   }
 
-  if (!response.ok) throw  new HttpError(response, body);
+  if (!response.ok) throw new HttpError(response, body);
   return body;
 };

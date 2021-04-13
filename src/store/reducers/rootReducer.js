@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import movieReducer from './movieReducer';
+import modalReducer from './modalReducer';
 
 const rootReducer = combineReducers({
-  movieStore: movieReducer
+  movieState: movieReducer,
+  modalState: modalReducer
 });
 
-export default rootReducer
+export default rootReducer;

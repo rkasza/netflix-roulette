@@ -9,8 +9,7 @@ import Row from '../../components/Skeleton/Row';
 import Col from '../../components/Skeleton/Col';
 
 const Movies = ({ viewMovieDetails }) => {
-  const movies = useSelector(state => state.movieStore.movies);
-  const numberOfResults = useSelector(state => state.movieStore.totalAmount);
+  const { movies, totalAmount } = useSelector(({ movieState }) => movieState);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,11 +21,11 @@ const Movies = ({ viewMovieDetails }) => {
       <MoviesToolbar/>
       <Row>
         <Col size={12}>
-          <span style={{ fontSize: '20px' }}>{`${numberOfResults} movies found`}</span>
+          <span style={{ fontSize: '20px' }}>{`${totalAmount} movies found`}</span>
         </Col>
       </Row>
       <Row className="MovieList">
-        {movies.length !== 0 ? movies.map(movie => <Movie key={movie.id} movie={movie} viewMovieDetails={viewMovieDetails}/>) : <NoMovieFound />}
+        {movies.length !== 0 ? movies.map(movie => <Movie key={movie.id} movie={movie} />) : <NoMovieFound />}
       </Row>
     </div>
   );

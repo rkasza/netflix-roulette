@@ -8,15 +8,15 @@ const initialState = {
 
 const modalReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionTypes.SHOW_MODAL:
+    case actionTypes.OPEN_MODAL:
       return {
         ...state,
+        ...payload,
         show: true
       };
-    case actionTypes.STORE_MOVIE:
+    case actionTypes.CLOSE_MODAL:
       return {
-        ...state,
-        movie: payload.movie
+        ...initialState
       };
     default:
       return state;

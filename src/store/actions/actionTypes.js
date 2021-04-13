@@ -1,5 +1,11 @@
-export const GET_MOVIES = 'GET_MOVIES';
+export const STORE_MOVIES = 'STORE_MOVIES';
 export const STORE_MOVIE = 'STORE_MOVIE';
-export const SHOW_MODAL = 'SHOW_MODAL';
-export const HIDE_MODAL = 'HIDE_MODAL';
+export const SHOW_RESPONSE = 'SHOW_RESPONSE';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SHOW_SUCCESS = 'SHOW_SUCCESS';
+export const UPDATE_MOVIE_PARAM = 'UPDATE_MOVIE_PARAM';
+export const SET_QUERY = 'SET_QUERY';
+export const SET_GENRE = 'SET_GENRE';
+export const SET_SORTBY = 'SET_SORTBY';
+export const SAVE_LAST_QUERY = 'SAVE_LAST_QUERY';

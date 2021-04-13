@@ -65,6 +65,8 @@
   border-radius: 3px;
   padding: 1px 12px;
   line-height: initial;
+  font-family: 'Varela Round', sans-serif;
+  text-align: center;
 }
 .Movie .Info .MovieTitle:hover {
   cursor: pointer;

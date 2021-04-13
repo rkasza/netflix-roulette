@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import GenreList from './GenreList';
 import ReleaseYear from './ReleaseYear';
@@ -9,11 +10,16 @@ import MovieMenu from './MovieMenu';
 import MovieForm from '../../MovieForm/MovieForm';
 import Confirm from '../../../components/Confirm';
 import useModal from '../../../hooks/useModal';
+import { getMovie } from '../../../store/actions/movieActions';
 
-const Movie = React.memo(({ movie, viewMovieDetails }) => {
+const Movie = React.memo(({ movie }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const { modal, openModal } = useModal();
-
+  const { openModal } = useModal();
+  const dispatch = useDispatch();
+  const viewMovieDetails = () => {
+    dispatch(getMovie(movie.id));
+    window.scrollTo(0, 0);
+  };
   const openEditModal = () => {
     const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={movie} onSubmit={() => alert('Movie Edited')} />;
     openModal(modalBody, 'MovieFormModal');
@@ -50,13 +56,12 @@ const Movie = React.memo(({ movie, viewMovieDetails }) => {
         </div>
         <div className="Info">
           <h5>
-            <span onClick={() => viewMovieDetails(movie.id)}className="MovieTitle">{title}</span>
+            <span className="MovieTitle" onClick={viewMovieDetails}>{title}</span>
             <ReleaseYear>{release_date}</ReleaseYear>
           </h5>
           <GenreList genres={genres} />
         </div>
       </div>
-      {modal}
     </>
   )  
 });

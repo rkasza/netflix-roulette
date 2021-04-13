@@ -3,24 +3,31 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   movies: [],
   movie: null,
-  // For pagination
-  limit: 6,
-  offset: 0,
-  totalAmount: 0
+  totalAmount: 0,
+  query: '',
+  genre: 'All',
+  sortBy: 'release_date',
+  lastQuery: null
 };
 
 const movieReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case actionTypes.GET_MOVIES:
+    case actionTypes.STORE_MOVIES:
       return {
         ...state,
-        ...payload.response, // We save the server response from the server
-        movies: payload.response.data
+        ...payload
       };
     case actionTypes.STORE_MOVIE:
       return {
         ...state,
         movie: payload.movie
+      };
+    // Payload looks like { [genre|sortBy|query]: newValue }
+    case actionTypes.UPDATE_MOVIE_PARAM:
+    case actionTypes.SAVE_LAST_QUERY:
+      return {
+        ...state,
+        ...payload
       };
     default:
       return state;

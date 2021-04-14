@@ -24,10 +24,16 @@ const _fetch = params => options => fetch(MovieApiUrlBuilder(params), { ...defau
 const MovieService = {
   //searcBy, sortby, getMovies returns result in response.data
   getMovies: async params => await _fetch({ limit: 6, sortOrder: 'desc', ...params })(), // GET
-  createMovie: async newMovie => await _fetch()({ method: 'POST', body: newMovie }), // POST
-  updateMovies: async updatedMovie => await _fetch()({ method: 'PUT', body: updatedMovie }), // PUT
+  createMovie: async newMovie => await _fetch()({ method: 'POST', body: JSON.stringify(newMovie) }), // POST
+  /* There are some movies with empty taglines in the database.
+     Before updating the movie tagline needs to be removed from the body because it can not be empty.
+  */
+  updateMovies: async ({ tagline, ...updatedMovie }) => await _fetch()({ method: 'PUT', body: JSON.stringify(updatedMovie) }), // PUT
   getMovie: async id => await _fetch({ id })(), // GET + movieId
   deleteMovie: async id => await _fetch({ id })({ method: 'DELETE' }), // DELETE + movieId
 };
 
 export default MovieService;
+
+
+// createMovie: async ({ id, ...newMovie }) => await _fetch()({ method: 'POST', body: JSON.stringify(newMovie) }), // POST

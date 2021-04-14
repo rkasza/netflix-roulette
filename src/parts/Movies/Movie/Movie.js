@@ -10,7 +10,7 @@ import MovieMenu from './MovieMenu';
 import MovieForm from '../../MovieForm/MovieForm';
 import Confirm from '../../../components/Confirm';
 import useModal from '../../../hooks/useModal';
-import { getMovie } from '../../../store/actions/movieActions';
+import { getMovie, deleteMovie, updateMovie } from '../../../store/actions/movieActions';
 
 const Movie = React.memo(({ movie }) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -20,20 +20,22 @@ const Movie = React.memo(({ movie }) => {
     dispatch(getMovie(movie.id));
     window.scrollTo(0, 0);
   };
+  const handleOnConfirm = () => dispatch(deleteMovie(movie.id));
+  const handleOnEdit = movie => dispatch(updateMovie(movie));
   const openEditModal = () => {
-    const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={movie} onSubmit={() => alert('Movie Edited')} />;
+    const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={movie} onSubmit={handleOnEdit} />;
     openModal(modalBody, 'MovieFormModal');
   };
 
   const openConfrim = () => {
     const confirm = (
-      <Confirm onConfirm={() => alert('MOVIE DELETEd')}>
+      <Confirm onConfirm={handleOnConfirm}>
         <h3>DELETE MOVIE</h3>
         <p>Are you sure you want to delete this movie?</p>
       </Confirm>
     );
     openModal(confirm, 'ConfirmModal');
-  }
+  };
 
   const handleOnMouseEnter = () => setShowPopup(true);
   const handleOnMouseLeave = () => setShowPopup(false);

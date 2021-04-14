@@ -1,0 +1,13 @@
+.ResponseMessage {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.ResponseMessage h2 {
+  text-transform: uppercase;
+}
+
+.ResponseMessage p {
+  text-align: center;
+}

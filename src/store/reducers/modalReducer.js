@@ -18,6 +18,11 @@ const modalReducer = (state = initialState, { type, payload }) => {
       return {
         ...initialState
       };
+    case actionTypes.CHANGE_MODAL_BODY:
+      return {
+        ...state,
+        modalBody: payload
+      }
     default:
       return state;
   }

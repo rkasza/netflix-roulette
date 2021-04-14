@@ -9,3 +9,4 @@ export const SET_QUERY = 'SET_QUERY';
 export const SET_GENRE = 'SET_GENRE';
 export const SET_SORTBY = 'SET_SORTBY';
 export const SAVE_LAST_QUERY = 'SAVE_LAST_QUERY';
+export const CHANGE_MODAL_BODY = 'CHANGE_MODAL_BODY';

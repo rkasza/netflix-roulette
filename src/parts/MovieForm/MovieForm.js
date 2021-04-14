@@ -8,8 +8,14 @@ import MultipleSelect from '../../components/forms/MultipleSelect/MultipleSelect
 import MultipleSelectOption from '../../components/forms/MultipleSelect/MultipleSelectOption';
 import './MovieForm.css';
 
+// Runtime cannot be null we need to convert it to a number, there are a few movie in the database withj runtime = null
+const checkDefaultFormData = formData => ({
+  ...formData,
+  runtime: +formData.runtime 
+});
+
 const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {
-  const [formData, setFormData] = useState(defaultFormData);
+  const [formData, setFormData] = useState(checkDefaultFormData(defaultFormData));
 
   const addGenre = genre => {
     const { genres } = formData;
@@ -21,18 +27,19 @@ const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {
 
   };
 
-  const handleOnChange = event => {
-    const { target: { name, value } } = event;
+  const handleOnChange = ({ target: { name, value } }) => {
+    // formData.runtime needs to be a number
+    const validValue = name === 'runtime' ? +value : value;
     const updatedFormData = {
       ...formData,
-      [name]: name === 'genres' ? addGenre(value) : value
+      [name]: name === 'genres' ? addGenre(validValue) : validValue
     };
     setFormData({ ...updatedFormData });
   };
 
   const handleOnSubmit = event => {
     event.preventDefault();
-    onSubmit();
+    onSubmit(formData);
   };
 
   const resetForm = () => {
@@ -56,7 +63,7 @@ const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {
           <MultipleSelectOption>Horror</MultipleSelectOption>
         </MultipleSelect>
         <InputField label='Overview' name="overview" id="overview" type="text" onChange={handleOnChange} value={overview} />
-        <InputField label='Runtime' name="runtime" id="runtime" type="text" onChange={handleOnChange} value={runtime} />
+        <InputField label='Runtime' name="runtime" id="runtime" type="text" pattern="\d+" onChange={handleOnChange} value={+runtime} />
       </Row>
       <Row>
         <Col size={12} className="ButtonBar">
@@ -67,15 +74,15 @@ const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {
     </form>
   )
 };
+
 MovieForm.defaultProps = {
   formData: {
-    id: null,
     title: '',
     release_date: new Date().toISOString().split('T')[0], // date,
-    poster_path: '',
+    poster_path: 'https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg', // this needs to be a valid uri
     genres: [],  // multiple options
     overview: '',
-    runtime: '' // in minutes 
+    runtime: 120 // need to be a number
   }
 };
 

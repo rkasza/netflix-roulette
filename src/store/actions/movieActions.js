@@ -65,7 +65,7 @@ export const updateMovie = movie => async dispatch => {
 export const deleteMovie = movieId => async dispatch => {
   try {
     await MovieService.deleteMovie(movieId);
-    showResponse('Movie has been deleted.');
+    dispatch(showResponse('Movie has been deleted.'));
     dispatch(getMovies());
   } catch (error) {
     console.log(error, error.messages);

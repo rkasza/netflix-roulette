@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import GenreList from './GenreList';
 import ReleaseYear from './ReleaseYear';
@@ -10,7 +10,7 @@ import MovieForm from '../../MovieForm/MovieForm';
 import Confirm from '../../../components/Confirm';
 import useModal from '../../../hooks/useModal';
 
-const Movie = React.memo(({ movie, viewMovieDetails }) => {
+const Movie = memo(({ movie, viewMovieDetails }) => {
   const [showPopup, setShowPopup] = useState(false);
   const { modal, openModal } = useModal();
 

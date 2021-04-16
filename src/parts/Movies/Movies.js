@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import MoviesToolbar from './MoviesToolbar/MoviesToolbar';
 import NoMovieFound from './NoMovieFound';
@@ -7,7 +7,7 @@ import Movie from './Movie/Movie';
 import Row from '../../components/Skeleton/Row';
 import Col from '../../components/Skeleton/Col';
 
-const Movies = React.memo(({ viewMovieDetails, selectedGenre, sortBy, movies, onGenreChange, onSortByChange }) => (
+const Movies = memo(({ viewMovieDetails, selectedGenre, sortBy, movies, onGenreChange, onSortByChange }) => (
   <div className="MovieListWrapper">
     <MoviesToolbar selectedGenre={selectedGenre} sortBy={sortBy} onGenreChange={onGenreChange} onSortByChange={onSortByChange}/>
     <Row>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import  { cloneElement, useState, useRef, useEffect } from 'react';
 import Col from '../../Skeleton/Col';
 import './MultipleSelect.css';
 import PropTypes from 'prop-types';
@@ -22,7 +22,7 @@ const MultipleSelect = ({ label, value, error = '', children, onChange, name }) 
   }
 
   const addParentPropsToChildren = (option, key) => 
-    React.cloneElement(option, { name, onChange, key, checked: value.includes(option.props.children)});
+    cloneElement(option, { name, onChange, key, checked: value.includes(option.props.children)});
   
   const selectValue = value.length === 0 ?  'Select a Genre': value.join(', ');
 

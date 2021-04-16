@@ -1,5 +1,3 @@
-import React from 'react';
-
 const GenreList = ({ genres }) => {
   return (
     <div className="MovieGenres">

@@ -31,8 +31,8 @@
 }
 
 .Movie:nth-child(3n - 1) {
-  margin-left: 1.3em;
-  margin-right: 1.3em;
+  margin-left: 2%;
+  margin-right: 2%;
 }
 .Movie .Poster {
   margin-bottom: 1em;

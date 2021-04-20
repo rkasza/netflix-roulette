@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Row from '../../components/Skeleton/Row';
 import Col from '../../components/Skeleton/Col';
 import HeroImage from '../../parts/HeroImage/HeroImage';
@@ -7,14 +7,19 @@ import Logo from '../../components/Logo/Logo';
 import MovieFilter from './MovieFilter';
 import MovieForm from '../../parts/MovieForm/MovieForm';
 import useModal from '../../hooks/useModal';
+import { createMovie } from '../../store/actions/movieActions';
 
-const Home = ({ onSubmit, query, onChange }) => {
-  const { modal, openModal } = useModal();
 
-  const handleOnClick = () => {
-   const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={() => alert('Movie Created')} />;
-   openModal(modalBody, 'MovieFormModal');
+const Home = () => {
+  const { openModal } = useModal();
+  const dispatch = useDispatch();
+  const handleOnSubmit = newMovie => {
+    dispatch(createMovie(newMovie));
   }
+  const handleOnClick = () => {
+    const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={handleOnSubmit} />;
+    openModal(modalBody, 'MovieFormModal');
+  };
 
   return (
     <>
@@ -25,19 +30,12 @@ const Home = ({ onSubmit, query, onChange }) => {
                 <Logo />
                 <button className="button AddMovie" type="button" onClick={handleOnClick}>+ ADD MOVIE</button>
               </div>
-              <MovieFilter onChange={onChange} onSubmit={onSubmit} query={query} />
+              <MovieFilter />
           </HeroImage>
         </Col>
       </Row>
-      {modal}
     </>
   );
-};
-
-Home.propTypes = {
-  onSubmit: PropTypes.func,
-  onChange: PropTypes.func,
-  query: PropTypes.string,
 };
 
 export default Home;

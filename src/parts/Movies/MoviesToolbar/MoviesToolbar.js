@@ -1,21 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from "react-redux";
+import * as movieActions from '../../../store/actions/movieActions'
 import Row from '../../../components/Skeleton/Row';
 import Genres from './Genres/Genres';
 import SortBy from './SortBy/SortBy';
+// Dispatch sort/filter functions here useEffect maybe?
+const MoviesToolbar = () => {
+  const { genre, sortBy } = useSelector(({ movieState }) => movieState);
+  const dispatch = useDispatch();
+  
+  const handleGenreChange = newGenre => {
+    if (genre !== newGenre) {
+      dispatch(movieActions.updateMovieParamAndGetMovies({ genre: newGenre }))
+    }
+  };
+  const handleSortByChange = newSortBy => dispatch(movieActions.updateMovieParamAndGetMovies({ sortBy: newSortBy }));
 
-const MovieListController = React.memo(({ selectedGenre, sortBy, onGenreChange, onSortByChange }) => (
-  <Row className="ResultController">
-    <Genres selected={selectedGenre} handleSelect={onGenreChange} />
-    <SortBy value={sortBy} onChange={onSortByChange} />
-  </Row>
-));
+  return (
+    <Row className="MoviesToolbar">
+      <Genres selected={genre} onGenreChange={handleGenreChange} />
+      <SortBy value={sortBy} onChange={handleSortByChange} />
+    </Row>
+  );
+}
 
-MovieListController.propTypes = {
-  selectedGenre: PropTypes.string,
-  sortBy: PropTypes.number,
-  onGenreChange: PropTypes.func.isRequired,
-  onSortByChange: PropTypes.func.isRequired
-};
-
-export default MovieListController;
+export default MoviesToolbar;

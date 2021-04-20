@@ -9,45 +9,41 @@ import MultipleSelectOption from '../../components/forms/MultipleSelect/Multiple
 import { movieSchema } from './movieSchema';
 import './MovieForm.css';
 
-// Runtime cannot be null we need to convert it to a number, there are a few movie in the database withj runtime = null
+// Runtime cannot be null we need to convert it to a number, there are a few movie in the database with runtime = null
 const checkDefaultFormData = formData => ({
   ...formData,
   runtime: +formData.runtime 
 });
 
-const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {  
+const MovieForm = ({ formTitle, formData, onSubmit }) => {  
   // Pass onSubmit to formik
   return (
-    <Formik initialValues={checkDefaultFormData(defaultFormData)} onSubmit={data => onSubmit(data)} validationSchema={movieSchema}>
-      {({ values, ...props }) => {
-        console.log(props.isSubmitting);
-        const { id } = values;
-        return (
-          <Form id="MovieForm">
-            <Row>
-              <h3>{formTitle}</h3>
-              {id && <InputField label='MOVIE ID' name="id" type="text" readOnly/>}
-              <InputField label='Title' name="title" type="text" />
-              <InputField label='Release Date' name="release_date" type="date" />
-              <InputField label='Poster Url' name="poster_path" type="text" />
-              <MultipleSelect label='Genre' name="genres">
-                <MultipleSelectOption>Crime</MultipleSelectOption>
-                <MultipleSelectOption>Documentary</MultipleSelectOption>
-                <MultipleSelectOption>Comedy</MultipleSelectOption>
-                <MultipleSelectOption>Horror</MultipleSelectOption>
-              </MultipleSelect>
-              <InputField label='Overview' name="overview" type="text" />
-              <InputField label='Runtime' name="runtime" type="number" />
-            </Row>
-            <Row>
-              <Col size={12} className="ButtonBar">
-                <Button variant="primary" type="submit">Submit</Button>
-                <Button variant="outline-primary" type="reset" as="input">Reset</Button>
-              </Col>
-            </Row>
-          </Form>
-        );
-      }}
+    <Formik initialValues={checkDefaultFormData(formData)} onSubmit={data => onSubmit(data)} validationSchema={movieSchema}>
+      {({ values: { id } }) => (
+        <Form id="MovieForm">
+          <Row>
+            <h3>{formTitle}</h3>
+            {id && <InputField label='MOVIE ID' name="id" type="text" readOnly/>}
+            <InputField label='Title' name="title" type="text" />
+            <InputField label='Release Date' name="release_date" type="date" />
+            <InputField label='Poster Url' name="poster_path" type="text" />
+            <MultipleSelect label='Genre' name="genres">
+              <MultipleSelectOption>Crime</MultipleSelectOption>
+              <MultipleSelectOption>Documentary</MultipleSelectOption>
+              <MultipleSelectOption>Comedy</MultipleSelectOption>
+              <MultipleSelectOption>Horror</MultipleSelectOption>
+            </MultipleSelect>
+            <InputField label='Overview' name="overview" type="text" />
+            <InputField label='Runtime' name="runtime" type="number" />
+          </Row>
+          <Row>
+            <Col size={12} className="ButtonBar">
+              <Button variant="primary" type="submit">Submit</Button>
+              <Button variant="outline-primary" type="reset" as="input">Reset</Button>
+            </Col>
+          </Row>
+        </Form>
+      )}
     </Formik>    
   );
 };

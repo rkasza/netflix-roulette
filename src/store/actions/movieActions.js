@@ -1,4 +1,3 @@
-import React from 'react';
 import MovieService from '../../services/MovieService';
 import * as actionTypes from './actionTypes';
 import { changeModalBody } from '../actions/modalActions';

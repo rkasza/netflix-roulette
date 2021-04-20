@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+
 import { useDispatch } from 'react-redux';
+import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import GenreList from './GenreList';
 import ReleaseYear from './ReleaseYear';
@@ -12,7 +13,8 @@ import Confirm from '../../../components/Confirm';
 import useModal from '../../../hooks/useModal';
 import { getMovie, deleteMovie, updateMovie } from '../../../store/actions/movieActions';
 
-const Movie = React.memo(({ movie }) => {
+
+const Movie = memo(({ movie, viewMovieDetails }) => {
   const [showPopup, setShowPopup] = useState(false);
   const { openModal } = useModal();
   const dispatch = useDispatch();

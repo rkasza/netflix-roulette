@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from '../../store/actions/movieActions'
 import MoviesToolbar from './MoviesToolbar/MoviesToolbar';
@@ -11,7 +11,7 @@ import Col from '../../components/Skeleton/Col';
 const Movies = ({ viewMovieDetails }) => {
   const { movies, totalAmount } = useSelector(({ movieState }) => movieState);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(actions.getMovies());
   }, [dispatch]);

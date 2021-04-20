@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 const colSizes = {
@@ -10,7 +10,7 @@ const colSizes = {
   '10': 'ten',
   '2': 'two'
 };
-const Col = React.forwardRef(({ size, children, className }, ref) => (
+const Col = forwardRef(({ size, children, className }, ref) => (
   <div ref={ref} className={`${colSizes[size]} columns ${className ? className : ''}`}>{children}</div>
 ));
 

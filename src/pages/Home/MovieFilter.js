@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Col from '../../components/Skeleton/Col';
 import Row from '../../components/Skeleton/Row';

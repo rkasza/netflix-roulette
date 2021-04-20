@@ -1,9 +1,9 @@
-import React from 'react'
+import { Component } from 'react'
 import Modal from '../components/Modal/Modal';
 
 
 const withModal = (WrappedComponent) => {
-  return class extends React.Component {
+  return class extends Component {
     constructor(props) {
       super(props);
       this.state = {

@@ -1,19 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Col from '../Skeleton/Col';
+import { useField } from 'formik';
 
-const InputField = ({ label, error = '',  ...inputProps }) => {
+const InputField = ({ label, ...props }) => {
+  const [field, { error, touched }] = useField(props);
   return (
-    <Col size={12} className={`FormControl ${error ? 'hasError' : ''}`}>
-      <label htmlFor={inputProps.id}>{label}</label>
-      <input className="u-full-width" {...inputProps} />
-      {error && <span className="error">{error}</span>}
+    <Col size={12} className={`FormControl ${touched && error ? 'hasError' : ''}`}>
+      <label htmlFor={props.name}>{label}</label>
+      <input className="u-full-width" {...field} {...props} id={props.name} />
+      {(touched && error) && <span className="error">{error}</span>}
     </Col>
   );
 };
 
 InputField.propTypes = {
-  id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   error: PropTypes.string
 };

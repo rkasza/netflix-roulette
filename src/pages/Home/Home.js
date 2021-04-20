@@ -11,7 +11,7 @@ const Home = ({ onSubmit, query, onChange }) => {
   const { modal, openModal } = useModal();
 
   const handleOnClick = () => {
-   const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={() => alert('Movie Created')} />;
+   const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={newMovie => console.log(newMovie)} />;
    openModal(modalBody, 'MovieFormModal');
   }
 

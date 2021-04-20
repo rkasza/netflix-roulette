@@ -1,4 +1,3 @@
-import { useState, useCallback } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
 import Header from './parts/Header';
 import Logo from './components/Logo/Logo';

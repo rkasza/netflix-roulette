@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as movieActions from '../../../store/actions/movieActions'
 import Row from '../../../components/Skeleton/Row';

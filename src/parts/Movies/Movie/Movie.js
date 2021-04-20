@@ -14,7 +14,7 @@ import useModal from '../../../hooks/useModal';
 import { getMovie, deleteMovie, updateMovie } from '../../../store/actions/movieActions';
 
 
-const Movie = memo(({ movie, viewMovieDetails }) => {
+const Movie = memo(({ movie }) => {
   const [showPopup, setShowPopup] = useState(false);
   const { openModal } = useModal();
   const dispatch = useDispatch();

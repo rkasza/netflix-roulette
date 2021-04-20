@@ -1,4 +1,4 @@
-import  { cloneElement, useState, useRef, useEffect } from 'react';
+import { cloneElement, useState, useRef, useEffect } from 'react';
 import { useField } from 'formik';
 import Col from '../../Skeleton/Col';
 import './MultipleSelect.css';

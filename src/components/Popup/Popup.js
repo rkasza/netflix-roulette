@@ -21,7 +21,6 @@ const Popup = ({ button, children }) => {
   )
 };
 Popup.propTypes = {
-  className: PropTypes.string,
   button: PropTypes.node.isRequired,
   children: PropTypes.node
 };

@@ -45,7 +45,7 @@ export const createMovie = newMovie => async dispatch => {
     await MovieService.createMovie(newMovie);   
     dispatch(showResponse(<>The movie has been added to <br /> database successfully.</>));
   } catch (error) {
-    console.log(error, error.messages);
+    console.error(error, error.messages);
     dispatch(showResponse(error.messages, false));
   }
 };
@@ -56,7 +56,7 @@ export const updateMovie = movie => async dispatch => {
     dispatch(showResponse(<>{movie.title} <br /> has been updated.</>));
     dispatch(getMovies());    
   } catch (error) {
-    console.log(error, error.messages);
+    console.error(error, error.messages);
     dispatch(showResponse(error.messages, false));
   }
 };
@@ -67,7 +67,7 @@ export const deleteMovie = movieId => async dispatch => {
     dispatch(showResponse('Movie has been deleted.'));
     dispatch(getMovies());
   } catch (error) {
-    console.log(error, error.messages);
+    console.error(error, error.messages);
     dispatch(showResponse(error.messages, false));
   }
 };

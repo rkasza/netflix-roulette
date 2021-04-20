@@ -17,7 +17,8 @@ const Col = forwardRef(({ size, children, className }, ref) => (
 
 Col.propTypes = {
   size: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node
 }
 
 export default Col;

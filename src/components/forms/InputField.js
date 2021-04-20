@@ -14,8 +14,7 @@ const InputField = ({ label, ...props }) => {
 };
 
 InputField.propTypes = {
-  label: PropTypes.string.isRequired,
-  error: PropTypes.string
+  label: PropTypes.string.isRequired
 };
 
 export default InputField;

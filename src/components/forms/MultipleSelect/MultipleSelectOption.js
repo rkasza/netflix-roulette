@@ -9,7 +9,8 @@ const MultipleSelectOption = ({ name, children }) => (
 );
 
 MultipleSelectOption.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  name: PropTypes.string
 };
 
 export default MultipleSelectOption;

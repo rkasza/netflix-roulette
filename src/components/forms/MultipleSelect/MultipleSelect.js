@@ -43,7 +43,6 @@ const MultipleSelect = ({ label, children, ...props }) => {
 
 MultipleSelect.propTypes = {
   label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   children: PropTypes.node
 };
 

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-const Genre = ({ active, genre, handleSelect }) => (
-  <button type="button" className={`${active ? 'active Genre': 'Genre'}`} onClick={() => handleSelect(genre)}>
+const Genre = ({ active, genre, handleGenreChange }) => (
+  <button type="button" className={`${active ? 'active Genre': 'Genre'}`} onClick={() => handleGenreChange(genre)}>
     {genre}
   </button>
 );
@@ -9,7 +9,7 @@ const Genre = ({ active, genre, handleSelect }) => (
 Genre.propTypes = {
   active: PropTypes.bool,
   genre: PropTypes.string.isRequired,
-  handleSelect: PropTypes.func.isRequired,
+  handleGenreChange: PropTypes.func.isRequired,
 };
 
 export default Genre;

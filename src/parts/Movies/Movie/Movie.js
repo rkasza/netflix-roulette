@@ -1,3 +1,5 @@
+
+import { useDispatch } from 'react-redux';
 import { useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import GenreList from './GenreList';
@@ -9,25 +11,33 @@ import MovieMenu from './MovieMenu';
 import MovieForm from '../../MovieForm/MovieForm';
 import Confirm from '../../../components/Confirm';
 import useModal from '../../../hooks/useModal';
+import { getMovie, deleteMovie, updateMovie } from '../../../store/actions/movieActions';
+
 
 const Movie = memo(({ movie, viewMovieDetails }) => {
   const [showPopup, setShowPopup] = useState(false);
-  const { modal, openModal } = useModal();
-
+  const { openModal } = useModal();
+  const dispatch = useDispatch();
+  const viewMovieDetails = () => {
+    dispatch(getMovie(movie.id));
+    window.scrollTo(0, 0);
+  };
+  const handleOnConfirm = () => dispatch(deleteMovie(movie.id));
+  const handleOnEdit = movie => dispatch(updateMovie(movie));
   const openEditModal = () => {
-    const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={movie} onSubmit={() => alert('Movie Edited')} />;
+    const modalBody = <MovieForm formTitle="EDIT MOVIE" formData={movie} onSubmit={handleOnEdit} />;
     openModal(modalBody, 'MovieFormModal');
   };
 
   const openConfrim = () => {
     const confirm = (
-      <Confirm onConfirm={() => alert('MOVIE DELETEd')}>
+      <Confirm onConfirm={handleOnConfirm}>
         <h3>DELETE MOVIE</h3>
         <p>Are you sure you want to delete this movie?</p>
       </Confirm>
     );
     openModal(confirm, 'ConfirmModal');
-  }
+  };
 
   const handleOnMouseEnter = () => setShowPopup(true);
   const handleOnMouseLeave = () => setShowPopup(false);
@@ -50,13 +60,12 @@ const Movie = memo(({ movie, viewMovieDetails }) => {
         </div>
         <div className="Info">
           <h5>
-            <span onClick={() => viewMovieDetails(movie)}className="MovieTitle">{title}</span>
+            <span className="MovieTitle" onClick={viewMovieDetails}>{title}</span>
             <ReleaseYear>{release_date}</ReleaseYear>
           </h5>
           <GenreList genres={genres} />
         </div>
       </div>
-      {modal}
     </>
   )  
 });

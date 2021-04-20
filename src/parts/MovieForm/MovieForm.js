@@ -9,12 +9,16 @@ import MultipleSelectOption from '../../components/forms/MultipleSelect/Multiple
 import { movieSchema } from './movieSchema';
 import './MovieForm.css';
 
-
+// Runtime cannot be null we need to convert it to a number, there are a few movie in the database withj runtime = null
+const checkDefaultFormData = formData => ({
+  ...formData,
+  runtime: +formData.runtime 
+});
 
 const MovieForm = ({ formTitle, formData: defaultFormData, onSubmit }) => {  
   // Pass onSubmit to formik
   return (
-    <Formik initialValues={defaultFormData} onSubmit={data => onSubmit(data)} validationSchema={movieSchema}>
+    <Formik initialValues={checkDefaultFormData(defaultFormData)} onSubmit={data => onSubmit(data)} validationSchema={movieSchema}>
       {({ values, ...props }) => {
         console.log(props.isSubmitting);
         const { id } = values;
@@ -52,10 +56,10 @@ MovieForm.defaultProps = {
   formData: {
     title: '',
     release_date: new Date().toISOString().split('T')[0], // date,
-    poster_path: 'https://image.tmdb.org/t/p/w500/sM33SANp9z6rXW8Itn7NnG1GOEs.jpg',
+    poster_path: 'https://image.tmdb.org/t/p/w500/432BowXw7a4fWXSONxBaFKqvW4f.jpg', // this needs to be a valid url
     genres: [],  // multiple options
     overview: '',
-    runtime: '' // in minutes 
+    runtime: 120 // need to be a number
   }
 };
 

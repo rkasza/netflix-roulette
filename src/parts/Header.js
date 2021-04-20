@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import MovieDetails from '../pages/MovieDetails/MovieDetails';
 import Home from '../pages/Home/Home';
+import * as actions from '../store/actions/movieActions';
 
-const Header = ({ movie, backHome, query, onSubmit, onChange }) => 
-  movie ? <MovieDetails movie={movie} backHome={backHome}/> : <Home query={query} onSubmit={onSubmit} onChange={onChange} />;
+const Header = () => {
+  const { movie } = useSelector(({ movieState }) => movieState);
+  const dispatch = useDispatch();
 
-Header.propTypes = {
-  movie: PropTypes.object,
-  backHome: PropTypes.func.isRequired,
-  query: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired
+  const backHome = () => dispatch(actions.saveMovie(null));
+
+  return movie ? <MovieDetails movie={movie} backHome={backHome}/> : <Home />;
 };
+  
 
 export default Header;

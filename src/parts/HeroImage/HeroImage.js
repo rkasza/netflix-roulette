@@ -1,5 +1,6 @@
+import React from 'react';
 import './HeroImage.css';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const HeroImage = ({ className = '', children, image = '', alpha= 0.85 }) => {
   const backgraundImage = `url("${image}")`;

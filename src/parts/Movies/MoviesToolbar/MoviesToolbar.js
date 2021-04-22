@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import * as movieActions from '../../../store/actions/movieActions'
 import Row from '../../../components/Skeleton/Row';
@@ -22,6 +22,6 @@ const MoviesToolbar = () => {
       <SortBy value={sortBy} onChange={handleSortByChange} />
     </Row>
   );
-};
+}
 
 export default MoviesToolbar;

@@ -4,15 +4,12 @@
 }
 #MovieForm input:not([type="reset"]) {
   background-color: #2e2e2e;
-  border: 2px solid #2e2e2e;
+  border: none;
   border-radius: 3px;
   height: 44px;
   padding: 6px 10px;
   font-size: 20px;
   margin-bottom: 0;
-}
-#MovieForm .FormControl {
-  height: 97px;
 }
 #MovieForm input:read-only {
   background-color: #232323;
@@ -26,14 +23,16 @@
   font-size: 15px;
   text-transform: uppercase;
 }
-#MovieForm .FormControl .error {
-  color: #f65261;
-  font-size: 12px;
+#MovieForm .FormControl:not(.hasError) {
+  margin-bottom: 1em;
 }
 #MovieForm .FormControl.hasError input {
   border: 2px solid #f65261;
 }
-
+#MovieForm .FormControl .error {
+  color: #f65261;
+  font-size: 12px;
+}
 #MovieForm .ButtonBar {
   display: flex;
   flex-direction: row-reverse;

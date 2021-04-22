@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import HeroImage from '../../parts/HeroImage/HeroImage';
 import Logo from '../../components/Logo/Logo';

@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import ModalWrapper from './ModalWrapper';
 import CloseIcon from 'mdi-react/CloseIcon';

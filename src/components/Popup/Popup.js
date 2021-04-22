@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Popup.css';
 import CloseIcon from 'mdi-react/CloseIcon';

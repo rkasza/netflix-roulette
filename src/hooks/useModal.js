@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import Modal from '../components/Modal/Modal';
+import { useSelector, useDispatch } from "react-redux";
+import * as modalActions from '../store/actions/modalActions';
 
 const useModal = () => {
   const modalState = useSelector(({ modalState }) => modalState);

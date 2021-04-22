@@ -21,6 +21,6 @@ const MoviesToolbar = () => {
       <SortBy value={sortBy} onChange={handleSortByChange} />
     </Row>
   );
-};
+}
 
 export default MoviesToolbar;

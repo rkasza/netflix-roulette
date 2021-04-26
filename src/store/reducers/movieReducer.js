@@ -29,6 +29,10 @@ const movieReducer = (state = initialState, { type, payload }) => {
         ...state,
         ...payload
       };
+    case actionTypes.RESET_STATE:
+      return {
+        ...initialState
+      }
     default:
       return state;
   }

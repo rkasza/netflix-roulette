@@ -12,9 +12,9 @@ import { createMovie } from '../../store/actions/movieActions';
 const Home = () => {
   const { openModal } = useModal();
   const dispatch = useDispatch();
-  const handleOnSubmit = newMovie => {
-    dispatch(createMovie(newMovie));
-  };
+  
+  const handleOnSubmit = newMovie => dispatch(createMovie(newMovie));
+
   const handleOnClick = () => {
     const modalBody = <MovieForm formTitle="ADD MOVIE" onSubmit={handleOnSubmit} />;
     openModal(modalBody, 'MovieFormModal');

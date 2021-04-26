@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
 import { getMovie } from '../../store/actions/movieActions'
@@ -27,7 +27,6 @@ const MovieDetails = () => {
           await dispatch(getMovie(movieId));
           window.scrollTo(0,0);
         } catch (error) {
-          //TODO: Handle notfound status
           if (error.status === NOT_FOUND_STATUS) {
             history.push('/notfound');
           }
@@ -36,11 +35,13 @@ const MovieDetails = () => {
     })();
   }, [movieId, dispatch, history]);
 
+  const handleClick = () => history.goBack();
+
   return movie && (
     <HeroImage className="MovieDetails" image="/images/movie-montage.jpg" alpha={0.95}>
       <div className="header">
         <Logo />
-        <Link to="/"><MagnifyIcon className="SearchMovie" color="#f65261" size={30} /></Link>
+        <MagnifyIcon className="SearchMovie" onClick={handleClick} color="#f65261" size={30} />
       </div>
       <div className="MovieDetails">
         <Image src={movie.poster_path}  className="Poster"/>

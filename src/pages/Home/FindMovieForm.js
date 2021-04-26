@@ -1,16 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Col from '../../components/Skeleton/Col';
 import Row from '../../components/Skeleton/Row';
 import './FindMovie.css';
-import { updateMovieParam, getMovies } from '../../store/actions/movieActions';
+import { updateMovieParam } from '../../store/actions/movieActions';
 
 const MovieFilter = () => {
   const { query, lastQuery  } = useSelector(({ movieState }) => movieState);
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const onSubmit = event => {
     event.preventDefault();
     if (query !== lastQuery) {
-      dispatch(getMovies());
+      const url = `/${query === '' ? '' : 'search/' + query} `
+  
+      history.push(url);
     }
   };
   const handleOnChange = event => dispatch(updateMovieParam({ query: event.target.value }));

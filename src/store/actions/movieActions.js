@@ -13,6 +13,8 @@ export const updateMovieParamAndGetMovies = param => async dispatch => {
   dispatch(updateMovieParam(param));
   dispatch(getMovies());
 };
+//When navigitaing back to home with Logo
+export const resetQuery = () =>  ({ type: actionTypes.RESET_STATE });
 
 export const setQuery = query => ({ type: actionTypes.SET_QUERY, payload: { query }});
 

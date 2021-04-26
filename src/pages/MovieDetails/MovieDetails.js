@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import MagnifyIcon from 'mdi-react/MagnifyIcon';
 
 import { getMovie } from '../../store/actions/movieActions'
@@ -12,11 +12,13 @@ import GenreList from '../../parts/Movies/Movie/GenreList';
 import ReleaseYear from '../../parts/Movies/Movie/ReleaseYear';
 import Raitng from './Rating/Raitng';
 import RunTime from './Runtime';
+import { NOT_FOUND_STATUS } from '../../util/http/http-util';
 
 const MovieDetails = () => {
   const movie = useSelector(({ movieState }) => movieState.movie);
   const dispatch = useDispatch();
   const { movieId } = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
@@ -26,10 +28,13 @@ const MovieDetails = () => {
           window.scrollTo(0,0);
         } catch (error) {
           //TODO: Handle notfound status
+          if (error.status === NOT_FOUND_STATUS) {
+            history.push('/notfound');
+          }
         }
       }
     })();
-  }, [movieId, dispatch]);
+  }, [movieId, dispatch, history]);
 
   return movie && (
     <HeroImage className="MovieDetails" image="/images/movie-montage.jpg" alpha={0.95}>

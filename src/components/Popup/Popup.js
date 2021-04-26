@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Popup.css';
 import CloseIcon from 'mdi-react/CloseIcon';
@@ -21,7 +21,6 @@ const Popup = ({ button, children }) => {
   )
 };
 Popup.propTypes = {
-  className: PropTypes.string,
   button: PropTypes.node.isRequired,
   children: PropTypes.node
 };

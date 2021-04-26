@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MovieDetails from '../pages/MovieDetails/MovieDetails';
 import Home from '../pages/Home/Home';

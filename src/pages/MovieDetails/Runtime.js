@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const Runtime = ({ className = '', children }) => <span className={className}>{children} min</span>;

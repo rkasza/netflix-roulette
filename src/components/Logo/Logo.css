@@ -1,5 +1,6 @@
-.Logo {
-  color: #f65261
+.Logo, .Logo:hover {
+  color: #f65261;
+  text-decoration: none;
 }
 .Logo .BoldNetflix {
   font-weight: bold;

@@ -33,7 +33,10 @@
   flex: 0 0 32%;
   position: relative;
 }
-
+.MovieLink, .MovieLink:hover {
+  text-decoration: none;
+  color: #fff;
+}
 .Movie:nth-child(3n - 1) {
   margin-left: 2%;
   margin-right: 2%;

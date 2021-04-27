@@ -6,7 +6,7 @@ import './FindMovie.css';
 import { updateMovieParam, resetState } from '../../store/actions/movieActions';
 
 const FindMovieForm = () => {
-  const { query, lastQuery } = useSelector(({ movieState }) => movieState);
+  const { query, lastQuery, genre } = useSelector(({ movieState }) => movieState);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -14,6 +14,9 @@ const FindMovieForm = () => {
     event.preventDefault();
     if (query !== lastQuery) {
       if (query !== '') {
+        if (genre === '') {
+          dispatch(updateMovieParam({ genre: 'All' }))
+        }
         history.push(`/search/${query}`);
       } else {
         dispatch(resetState());

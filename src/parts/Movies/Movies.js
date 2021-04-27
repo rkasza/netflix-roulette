@@ -14,7 +14,7 @@ const Movies = () => {
   const dispatch = useDispatch();
   const { query: searchQuery } = useParams();
   const { pathname } = useLocation();
-
+  
   useEffect(() => {
     //Save queryfrom url when page is reloaded or a user lands on "localhost/search/Search query"
     if (pathname !== '/' && query !== searchQuery) {
@@ -28,7 +28,7 @@ const Movies = () => {
   useEffect(() => {
     if (searchQuery && (lastQuery !== query)) {
       dispatch(getMovies());
-    } else if (searchQuery === undefined) {
+    } else if (pathname === '/' && searchQuery === undefined) {
       // Reset state when query(url) is undefined(example: Logo navigation)
       dispatch(resetState());
     }

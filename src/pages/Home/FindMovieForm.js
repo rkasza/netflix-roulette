@@ -5,7 +5,7 @@ import Row from '../../components/Skeleton/Row';
 import './FindMovie.css';
 import { updateMovieParam, resetState } from '../../store/actions/movieActions';
 
-const MovieFilter = () => {
+const FindMovieForm = () => {
   const { query, lastQuery } = useSelector(({ movieState }) => movieState);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,4 +48,4 @@ const MovieFilter = () => {
   );
 };
 
-export default MovieFilter;
+export default FindMovieForm;

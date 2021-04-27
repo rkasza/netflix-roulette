@@ -3,21 +3,25 @@ import { useHistory } from 'react-router-dom';
 import Col from '../../components/Skeleton/Col';
 import Row from '../../components/Skeleton/Row';
 import './FindMovie.css';
-import { updateMovieParam } from '../../store/actions/movieActions';
+import { updateMovieParam, resetState } from '../../store/actions/movieActions';
 
 const MovieFilter = () => {
-  const { query, lastQuery  } = useSelector(({ movieState }) => movieState);
+  const { query, lastQuery } = useSelector(({ movieState }) => movieState);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onSubmit = event => {
     event.preventDefault();
     if (query !== lastQuery) {
-      const url = `/${query === '' ? '' : 'search/' + query} `
-  
-      history.push(url);
+      if (query !== '') {
+        history.push(`/search/${query}`);
+      } else {
+        dispatch(resetState());
+        history.push('/');
+      }
     }
   };
+
   const handleOnChange = event => dispatch(updateMovieParam({ query: event.target.value }));
   return (
     <form className="FindMovieForm" onSubmit={onSubmit}>

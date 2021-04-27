@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { Redirect, Route, Switch } from "react-router-dom";
 import ErrorBoundary from './components/ErrorBoundary';
 import Logo from './components/Logo/Logo';
 import Container from  './components/Skeleton/Container';
@@ -11,19 +9,9 @@ import useModal from './hooks/useModal';
 import PageNotFound from './pages/NotFound/PageNotFound';
 import FindMovie from './pages/Home/FindMovie';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
-import { resetQuery } from './store/actions/movieActions';
 
 function App() {
   const { modalState: { show, modalBody, modalClassName }, closeModal } = useModal();
-  const dispatch = useDispatch();
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    if(pathname === '/') {
-      dispatch(resetQuery());
-    }
-    
-  }, [pathname, dispatch]);
 
   return (
     <ErrorBoundary>

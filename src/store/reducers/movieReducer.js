@@ -11,7 +11,6 @@ const initialState = {
 };
 
 const movieReducer = (state = initialState, { type, payload }) => {
-  console.log(type, payload);
   switch (type) {
     case actionTypes.STORE_MOVIES:
       return {

@@ -24,7 +24,7 @@ const Movies = () => {
       })); 
     }
   }, []);// eslint-disable-line
-  console.log(searchQuery);
+
   useEffect(() => {
     if (searchQuery && (lastQuery !== query)) {
       dispatch(getMovies());

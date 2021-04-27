@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from 'react-router-dom';
-import { getMovies, updateMovieParam } from '../../store/actions/movieActions'
+import { getMovies, resetState, updateMovieParam } from '../../store/actions/movieActions'
 import MoviesToolbar from './MoviesToolbar/MoviesToolbar';
 import NoMovieFound from '../../pages/NotFound/NoMovieFound';
 import './Movies.css';
@@ -24,10 +24,13 @@ const Movies = () => {
       })); 
     }
   }, []);// eslint-disable-line
-
+  console.log(searchQuery);
   useEffect(() => {
     if (searchQuery && (lastQuery !== query)) {
       dispatch(getMovies());
+    } else if (searchQuery === undefined) {
+      // Reset state when query(url) is undefined(example: Logo navigation)
+      dispatch(resetState());
     }
   }, [searchQuery]); // eslint-disable-line
 

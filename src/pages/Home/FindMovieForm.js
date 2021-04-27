@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 import Col from '../../components/Skeleton/Col';
 import Row from '../../components/Skeleton/Row';
 import './FindMovie.css';
-import { updateMovieParam, resetState } from '../../store/actions/movieActions';
+import { updateMovieParam, updateMovieParamAndGetMovies } from '../../store/actions/movieActions';
 
 const FindMovieForm = () => {
-  const { query, lastQuery, genre } = useSelector(({ movieState }) => movieState);
+  const { query, lastQuery } = useSelector(({ movieState }) => movieState);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -14,12 +14,9 @@ const FindMovieForm = () => {
     event.preventDefault();
     if (query !== lastQuery) {
       if (query !== '') {
-        if (genre === '') {
-          dispatch(updateMovieParam({ genre: 'All' }))
-        }
-        history.push(`/search/${query}`);
+        dispatch(updateMovieParamAndGetMovies({ genre: 'All' }));
+        history.replace(`/search/${query}`);
       } else {
-        dispatch(resetState());
         history.push('/');
       }
     }

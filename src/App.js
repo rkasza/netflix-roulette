@@ -2,24 +2,20 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import ErrorBoundary from './components/ErrorBoundary';
 import Logo from './components/Logo/Logo';
 import Container from  './components/Skeleton/Container';
-import Movies from './parts/Movies/Movies';
 import './assets/css/App.css';
 import Modal from './components/Modal/Modal';
 import useModal from './hooks/useModal';
 import PageNotFound from './pages/NotFound/PageNotFound';
-import FindMovie from './pages/Home/FindMovie';
-import MovieDetails from './pages/MovieDetails/MovieDetails';
+import MainPage from './pages/MainPage';
 
 function App() {
   const { modalState: { show, modalBody, modalClassName }, closeModal } = useModal();
-
   return (
     <ErrorBoundary>
       <Container className="PageContent">
         <Switch>
-          <Route path="/movie/:movieId"><MovieDetails /><Movies /></Route>
-          <Route path={['/search/:query', '/']} exact><FindMovie /><Movies /></Route>
-          <Route path="/notfound" exact><PageNotFound /></Route> 
+          <Route path={['/search/:query', '/movie/:movieId', '/']} exact><MainPage /></Route>
+          <Route path="/notfound" exact><PageNotFound /></Route>
           <Route path="*"><Redirect to="/notfound"/></Route>
         </Switch>
         <footer><Logo fontSize='18px' /></footer>

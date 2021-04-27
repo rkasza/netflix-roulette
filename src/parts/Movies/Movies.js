@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from 'react-router-dom';
-import { getMovies } from '../../store/actions/movieActions'
+import { useParams, useLocation } from 'react-router-dom';
+import { getMovies, updateMovieParam } from '../../store/actions/movieActions'
 import MoviesToolbar from './MoviesToolbar/MoviesToolbar';
 import NoMovieFound from '../../pages/NotFound/NoMovieFound';
 import './Movies.css';
@@ -10,21 +10,32 @@ import Row from '../../components/Skeleton/Row';
 import Col from '../../components/Skeleton/Col';
 
 const Movies = () => {
-  const { movies, totalAmount, lastQuery } = useSelector(({ movieState }) => movieState);
+  const { movies, totalAmount, lastQuery, query } = useSelector(({ movieState }) => movieState);
   const dispatch = useDispatch();
-  const { query } = useParams();
+  const { query: searchQuery } = useParams();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    if (query && (lastQuery !== query)) {
+    //Save queryfrom url when page is reloaded or a user lands on "localhost/search/Search query"
+    if (pathname !== '/' && query !== searchQuery) {
+      dispatch(updateMovieParam({
+        query: searchQuery,
+        genre: 'All' // Set genre to 'All' when component is mounted
+      })); 
+    }
+  }, []);// eslint-disable-line
+
+  useEffect(() => {
+    if (searchQuery && (lastQuery !== query)) {
       dispatch(getMovies());
     }
-  }, [dispatch, query, lastQuery]);
-   
+  }, [searchQuery]); // eslint-disable-line
+
   return (
     <div className="MovieListWrapper">
       <MoviesToolbar/>
       <Row>
-        {query && (
+        {totalAmount !== null && (
           <Col size={12}>
             <span style={{ fontSize: '20px' }}>{`${totalAmount} movies found`}</span>
           </Col>

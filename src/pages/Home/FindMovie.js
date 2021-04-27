@@ -3,13 +3,13 @@ import Row from '../../components/Skeleton/Row';
 import Col from '../../components/Skeleton/Col';
 import HeroImage from '../../parts/HeroImage/HeroImage';
 import Logo from '../../components/Logo/Logo';
-import MovieFilter from './FindMovieForm';
+import FindMovieForm from './FindMovieForm';
 import MovieForm from '../../parts/MovieForm/MovieForm';
 import useModal from '../../hooks/useModal';
 import { createMovie } from '../../store/actions/movieActions';
 
 
-const Home = () => {
+const FindMovie = () => {
   const { openModal } = useModal();
   const dispatch = useDispatch();
   
@@ -28,11 +28,11 @@ const Home = () => {
             <Logo />
             <button className="button AddMovie" type="button" onClick={handleOnClick}>+ ADD MOVIE</button>
           </div>
-          <MovieFilter />
+          <FindMovieForm />
         </HeroImage>
       </Col>
     </Row>
   );
 };
 
-export default Home;
+export default FindMovie;

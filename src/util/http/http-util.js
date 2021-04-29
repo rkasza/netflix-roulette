@@ -3,6 +3,7 @@ import HttpError from './HttpError';
 export const APPLICATION_JSON = 'application/json';
 export const TEXT_PLAIN = 'text/plain'; // 404 No movie found response type
 const NO_CONTENT = 204; // delete movie response.status
+export const NOT_FOUND_STATUS = 404;
 
 export const handleResponse = async response => {
   //Movieapi delete endpoint doesn't have content type header on response

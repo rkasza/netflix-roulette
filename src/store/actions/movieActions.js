@@ -14,7 +14,7 @@ export const updateMovieParamAndGetMovies = param => async dispatch => {
   dispatch(getMovies());
 };
 
-export const setQuery = query => ({ type: actionTypes.SET_QUERY, payload: { query }});
+export const resetState = () =>  ({ type: actionTypes.RESET_STATE });
 
 export const saveLastQuery = lastQuery => ({ type: actionTypes.SAVE_LAST_QUERY, payload: { lastQuery }});
 

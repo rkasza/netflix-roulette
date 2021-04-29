@@ -1,18 +1,27 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Col from '../../components/Skeleton/Col';
 import Row from '../../components/Skeleton/Row';
 import './FindMovie.css';
-import { updateMovieParam, getMovies } from '../../store/actions/movieActions';
+import { updateMovieParam, updateMovieParamAndGetMovies } from '../../store/actions/movieActions';
 
-const MovieFilter = () => {
-  const { query, lastQuery  } = useSelector(({ movieState }) => movieState);
+const FindMovieForm = () => {
+  const { query, lastQuery } = useSelector(({ movieState }) => movieState);
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const onSubmit = event => {
     event.preventDefault();
     if (query !== lastQuery) {
-      dispatch(getMovies());
+      if (query !== '') {
+        dispatch(updateMovieParamAndGetMovies({ genre: 'All' }));
+        history.replace(`/search/${query}`);
+      } else {
+        history.push('/');
+      }
     }
   };
+
   const handleOnChange = event => dispatch(updateMovieParam({ query: event.target.value }));
   return (
     <form className="FindMovieForm" onSubmit={onSubmit}>
@@ -39,4 +48,4 @@ const MovieFilter = () => {
   );
 };
 
-export default MovieFilter;
+export default FindMovieForm;

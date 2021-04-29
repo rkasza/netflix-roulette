@@ -3,9 +3,9 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   movies: [],
   movie: null,
-  totalAmount: 0,
+  totalAmount: null,
   query: '',
-  genre: 'All',
+  genre: '',
   sortBy: 'release_date',
   lastQuery: null
 };
@@ -29,6 +29,10 @@ const movieReducer = (state = initialState, { type, payload }) => {
         ...state,
         ...payload
       };
+    case actionTypes.RESET_STATE:
+      return {
+        ...initialState
+      }
     default:
       return state;
   }

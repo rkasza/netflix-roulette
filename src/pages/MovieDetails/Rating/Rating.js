@@ -13,11 +13,11 @@ const getRatingColor = rating => {
   }
 }
 
-const Raitng = ({ children }) => <span className="MovieRating" style={{color: getRatingColor(children)}}>{children}</span>;
+const Rating = ({ children }) => <span className="MovieRating" style={{color: getRatingColor(children)}}>{children}</span>;
 
 
-Raitng.propTypes = {
+Rating.propTypes = {
   children: PropTypes.number.isRequired
 };
 
-export default Raitng;
+export default Rating;

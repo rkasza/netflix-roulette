@@ -17,12 +17,18 @@ export const getRatingColor = rating => {
 }
 
 const Rating = ({ children }) => {
-  const rating = children && (children > 0 && children < 10) ? children : INVALID_RATING;
-  return <span className="MovieRating" style={{color: getRatingColor(rating)}}>{rating}</span>
+  let rating = children;
+  let className = 'MovieRating';
+  if (typeof children !== 'number' || children < 0 || children > 10) {
+    rating = INVALID_RATING;
+    className = `${className} InvalidRating`;
+  }
+  
+  return <span className={className} style={{color: getRatingColor(rating)}}>{rating}</span>;
 };
 
 Rating.propTypes = {
-  rating: PropTypes.number
+  children: PropTypes.number
 };
 
 export default Rating;

@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import Rating, { getRatingColor } from './Rating';
+import Rating, { getRatingColor, INVALID_RATING } from './Rating';
 
 
 describe('<Rating>', () => {
@@ -25,22 +25,21 @@ describe('<Rating>', () => {
     });    
   })
   describe('Invalid Rating', () => {
-    it('should render \'N/A\' with invalid rating', () => {
-      // check undefined
-      const wrapper = shallow(<Rating />);
+    it(`should render '${INVALID_RATING}' without passing rating`, () => {
+      const wrapper = shallow(<Rating></Rating>);
       expect(wrapper.text()).toEqual('N/A');
-      // check rating > 0 || rating < 10
-      wrapper.setProps({ rating: -1 });
-      wrapper.update()
+    });
+    it(`should render '${INVALID_RATING}' with negative rating`, () => {
+      const wrapper = shallow(<Rating>{-1}</Rating>);
       expect(wrapper.text()).toEqual('N/A');
-      wrapper.setProps({ rating: 10 });
-      wrapper.update()
+    });
+    it(`should render '${INVALID_RATING}' with greater than 10 rating`, () => {
+      const wrapper = shallow(<Rating>{11}</Rating>);
       expect(wrapper.text()).toEqual('N/A');
-      // null
-      wrapper.setProps({ rating: null });
-      wrapper.update()
+    });
+    it(`should render '${INVALID_RATING}' with null`, () => {
+      const wrapper = shallow(<Rating>{null}</Rating>);
       expect(wrapper.text()).toEqual('N/A');
-      
-    })
+    });
   })
 });

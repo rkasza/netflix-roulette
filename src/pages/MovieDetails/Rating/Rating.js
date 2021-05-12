@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import './Rating.css';
 
-const INVALID_RATING = 'N/A';
+export const INVALID_RATING = 'N/A';
 
 export const getRatingColor = rating => {
   if (rating === INVALID_RATING) return '#fff';

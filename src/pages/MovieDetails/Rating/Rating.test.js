@@ -41,5 +41,9 @@ describe('<Rating>', () => {
       const wrapper = shallow(<Rating>{null}</Rating>);
       expect(wrapper.text()).toEqual('N/A');
     });
+    it('should render 0 when the rating is 0', () => {
+      const wrapper = shallow(<Rating>{0}</Rating>);
+      expect(wrapper.text()).toEqual('0');
+    });
   })
 });

@@ -10,7 +10,7 @@ import './MovieDetails.css';
 import Image from '../../components/Image';
 import GenreList from '../../parts/Movies/Movie/GenreList';
 import ReleaseYear from '../../parts/Movies/Movie/ReleaseYear';
-import Raitng from './Rating/Raitng';
+import Rating from './Rating/Rating';
 import RunTime from './Runtime';
 import { NOT_FOUND_STATUS } from '../../util/http/http-util';
 
@@ -46,7 +46,7 @@ const MovieDetails = () => {
       <div className="MovieDetails">
         <Image src={movie.poster_path}  className="Poster"/>
         <div className="MovieInfo">
-          <h1 className="MovieTitle">{movie.title} <Raitng>{movie.vote_average}</Raitng></h1>
+          <h1 className="MovieTitle">{movie.title} <Rating>{movie.vote_average}</Rating></h1>
           <GenreList genres={movie.genres} />
           <div style={{marginBottom: '1em'}}>
             <ReleaseYear>{movie.release_date}</ReleaseYear>
